@@ -72,6 +72,11 @@ document.addEventListener("DOMContentLoaded", function () {
   totalEl.textContent = `RM ${subtotal.toFixed(2)}`;
 });
 
+document.getElementById("checkoutForm").addEventListener("submit", function (e) {
+  const cart = JSON.parse(localStorage.getItem("tfhCart")) || [];
+  document.getElementById("cartData").value = JSON.stringify(cart);
+});
+
 function completeCheckout() {
   localStorage.removeItem('tfhCart');
   alert("Thank you! Your order has been placed.");
