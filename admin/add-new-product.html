@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Orders - TFH</title>
+
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const tabContainers = document.querySelectorAll('.tabs-container');
+
+                tabContainers.forEach(container => {
+                    const tabs = container.querySelectorAll('.tab2');
+                    const panes = container.querySelectorAll('.tab-pane2');
+
+                    tabs.forEach(tab => {
+                        tab.addEventListener('click', function () {
+                            const targetTab = this.getAttribute('data-tab');
+
+                            tabs.forEach(t => t.classList.remove('active'));
+                            this.classList.add('active');
+
+                            panes.forEach(pane => pane.classList.remove('active'));
+                            container.querySelector('#' + targetTab).classList.add('active');
+                        });
+                    });
+                });
+            });
+
+
+
+            let count=0;
+            let option=0;
+
+            function addRow() {
+                option=0;
+
+                const table = document.getElementById('var-tbl');
+                
+                const firstRowCell = table.querySelector('tr td.var-name');
+                
+                const newRow1 = document.createElement('tr');
+                
+                const newCell1_1 = document.createElement('td');
+                newCell1_1.classList.add('var-name');
+                newCell1_1.textContent = 'Variation '+(count+1);
+                count++;
+                
+                const newCell1_2 = document.createElement('td');
+                newCell1_2.classList.add('input-cell');
+                newCell1_2.innerHTML = '<input type="text" placeholder="e.g. Color, etc">';
+                
+                newRow1.appendChild(newCell1_1);
+                newRow1.appendChild(newCell1_2);
+                
+                const newRow2 = document.createElement('tr');
+                
+                const newCell2_1 = document.createElement('td');
+                newCell2_1.classList.add('options-cell');
+                newCell2_1.textContent = 'Option '+(option+1);
+                option++;
+                
+                const newCell2_2 = document.createElement('td');
+                newCell2_2.classList.add('input-cell');
+                newCell2_2.innerHTML = '<input type="text" placeholder="e.g. Red, etc">';
+                
+                newRow2.appendChild(newCell2_1);
+                newRow2.appendChild(newCell2_2);
+                
+                const newRow3 = document.createElement('tr');
+                
+                const newCell3_1 = document.createElement('td');
+                newCell3_1.classList.add('options-cell');
+                
+                const newCell3_2 = document.createElement('td');
+                newCell3_2.classList.add('add-var-name-btn');
+                newCell3_2.innerHTML = '<button onclick="addOption(this)" class="add-new-order-reset-btn">Add Option</button>'; 
+                
+                newRow3.appendChild(newCell3_1);
+                newRow3.appendChild(newCell3_2);
+                
+                table.appendChild(newRow1);
+                table.appendChild(newRow2);
+                table.appendChild(newRow3);
+            }
+
+            function addOption(button) {
+                const row = button.closest('tr');
+                
+                const newRow = document.createElement('tr');
+                
+                const newCell1 = document.createElement('td');
+                newCell1.classList.add('options-cell');
+                newCell1.textContent = 'Option '+(option+1);
+                option++;
+                
+                const newCell2 = document.createElement('td');
+                newCell2.classList.add('input-cell');
+                newCell2.innerHTML = '<input type="text" placeholder="e.g. Red, etc">'; // 输入框
+                
+                newRow.appendChild(newCell1);
+                newRow.appendChild(newCell2);
+                
+                row.parentNode.insertBefore(newRow, row);
+            }
+
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                const input = document.getElementById('tagsInput');
+                const button = document.getElementById('addTagButton');
+                const tagsList = document.getElementById('tagsList');
+
+                button.addEventListener('click', function() {
+                    const tag = input.value.trim();
+
+                    if (tag) {
+                        const tagElement = document.createElement('span');
+                        tagElement.textContent = tag;
+                        tagElement.style.backgroundColor = '#cdfffc';
+                        tagElement.style.padding = '10px';
+                        tagElement.style.marginRight = '10px';
+                        tagElement.style.marginBottom = '5px';
+                        tagElement.style.borderRadius = '5px';
+
+                        // Append the tag element to the tags list
+                        tagsList.appendChild(tagElement);
+
+                        // Clear the input field after adding the tag
+                        input.value = '';
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+            <!--Header Bar-->
+            <div class="head-bar">
+                <a href="dashboard.html">
+                    <img src="../images/logo.png" title="Logo" alt="Logo" width="30px" height="30px">
+                </a>
+
+                <div class="head-content-box">
+                    <span><a href="dashboard.html">&nbsp;&nbsp;Home</a>&nbsp;&nbsp;>&nbsp;&nbsp;</span><a href="add-new-product.html"><b>Add New Product</b></a>
+                </div>
+
+                <!--Header Bar > Action-->
+                <div class="head-action">
+                    <!--Notification Action-->
+                    <div class="head-notify-action">
+                        <button onclick="toggleNotification()">
+                            <img src="../images/notification.png" title="Notification" alt="Notification Icon" width="16.5px" height="16.5px">
+                        </button>
+
+                        <!--Header Bar > Action > Notification Bar-->
+                        <div class="head-notify-bar">
+                            <!--Header Bar > Action > Notification Bar > Header-->
+                            <div class="head-notify-bar-head">
+                                <h3>Notification</h3>
+                                <div class="head-notify-bar-head-action">
+                                    <button class="head-notify-bar-head-button" onclick="refreshNotifications()">
+                                        <img src="../images/refresh.png" title="Refresh" alt="Refresh Icon" width="16px" height="16px">
+                                    </button>
+                                    <div class="head-notify-bar-head-splitter"></div>
+                                    <button class="head-notify-bar-head-button" onclick="toggleNotification()">
+                                        <img src="../images/close.png" title="Close" alt="Close Icon" width="16px" height="16px">
+                                    </button>
+                                </div>
+                            </div>
+                            <!--Header Bar > Action > Notification Bar > Item 1-->
+                            <div class="head-notify-bar-item">
+                                    <span class="head-notify-bar-item-title">New Login Alert</span>
+                                    <span class="head-notify-bar-item-time">06/05/2025 11:22</span>
+                                    <p>A new login has been detected on your account at Petaling Jaya on desktop at 06-05-2025 11:22. If this was not done by you, please contact IT department immediately.</p>
+                            </div>
+                            <!--Header Bar > Action > Notification Bar > Item 2-->
+                            <div class="head-notify-bar-item">
+                                    <span class="head-notify-bar-item-title">New Login Alert</span>
+                                    <span class="head-notify-bar-item-time">05/05/2025 20:22</span>
+                                    <p>A new login has been detected on your account at Petaling Jaya on desktop at 05-05-2025 20:22. If this was not done by you, please contact IT department immediately.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Header Bar > Action > Notification Bar > Splitter-->
+                    <div class="head-action-split"></div>
+
+                    <!--Header Bar > Action > Notification Bar > Account Information-->
+                    <div class="head-action-acc-info">
+                        <img class="head-acc-avatar" src="../images/avatar.png" title="Avatar" alt="Avatar" height="32px" width="32px">
+                        <span class="head-acc-name">TEO YU XUAN</span>
+                        <button class="head-acc-action" onclick="toggleHeadAccDrop()">
+                            <img src="../images/arrow-down.png" title="Dropdown" alt="Dropdown Arrow" width="16px" height="16px">
+                        </button>
+
+                        <!--Header Bar > Action > Notification Bar > Account Information > Dropdown-->
+                        <div class="head-acc-drop" id="headAccDrop">
+                            <div>
+                                <ul>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/store-information.png" title="Store Information" alt="Store Information">
+                                        <span>Store Information</span>
+                                    </li>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/store-setting.png" title="Store Setting" alt="Store Setting">
+                                        <span>Store Setting</span>
+                                    </li>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/logout.png" title="Logout" alt="Logout">
+                                        <span>Logout</span>
+                                    </li>
+                                </ul>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <nav>
+            <!--Side Menu-->
+            <div class="side-menu">
+                <!--Side Menu > Item 1-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title">
+                        <a href="dashboard.html">Dashboard</a>
+                    </div>
+                </div>
+                <!--Side Menu > Item 2-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('side-menu-order')">
+                        <span>Order</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="side-menu-order" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="my-orders.html">My Orders</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="add-new-order.html">Add New Order</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 3-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('product-menu')">
+                        <span>Product</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="product-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="my-products.html">My Products</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="add-new-product.html">Add New Product</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 4-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('marketing-menu')">
+                        <span>Marketing</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="marketing-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="discount.html">Discount</a>
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="vouchers.html">Vouchers</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 5-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('finance-menu')">
+                        <span>Finance</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="finance-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="payment.html">Payment</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 6-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('store-menu')">
+                        <span>Store</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="store-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="store-information.html">Store Information</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="store-setting.html">Store Setting</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <!--Orders-->
+            <div class="dashboard-container-3">
+                <!--Orders > Content-->
+                <div class="dashboard-3">
+                    
+            <!-- Left Side -->
+            <div class="order-details-left-section">
+                <div class="order-status new-prod">
+                    <h3>Product Name</h3>
+                    <p>
+                        <input type="text" maxlength="150" name="new-product-name">
+                    </p>
+                </div>
+
+                <div class="order-status new-prod">
+                    <h3>Product Description</h3>
+                    <textarea rows="15">
+
+                    </textarea>
+                        
+                    </p>
+                </div>
+
+                <div class="order-status">
+                    <div class="tabs-container">
+                        <div class="tabs2">
+                            <ul class="tabs-list">
+                                <li class="tab2 active" data-tab="general">General</li>
+                                <li class="tab2" data-tab="inventory">Inventory</li>
+                                <li class="tab2" data-tab="shipping">Shipping</li>
+                                <li class="tab2" data-tab="attributes">Attributes</li>
+                                <li class="tab2" data-tab="advanced">Advanced</li>
+                            </ul>
+                        </div>
+
+                        <div class="tab-content2">
+                            <div class="tab-pane2 active" id="general">
+                                <table class="var-prod">
+                                    <tr>
+                                        <td class="var-prod-left">Product Type
+                                            <span class="require-text">*</span>
+                                        </td>
+                                        <td class="var-prod-right">
+                                            <input type="radio" name="prod-type" value="physical" required> Physical Product<br>
+                                            <input type="radio" name="prod-type" value="virtual" required> Virtual Product
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        
+                            <div class="tab-pane2" id="inventory">
+                                <table class="var-prod">
+                                    <tr>
+                                        <td class="var-prod-left">SKU</td>
+                                        <td class="var-prod-right">
+                                            <input type="text" maxlength="50">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>GTIN</td>
+                                        <td>
+                                            <input type="text" maxlength="50" placeholder="GTIN code">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>GTIN, UPC, EAN or ISBN</td>
+                                        <td>
+                                            <input type="text" maxlength="50">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Quantity
+                                            <span class="require-text">*</span>
+                                        </td>
+                                        <td>
+                                            <input type="number" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Allow backorders?
+                                            <span class="require-text">*</span>
+                                        </td>
+                                        <td>
+                                            <input type="radio" name="backorders" value="no" checked required> Do not allow<br>
+                                            <input type="radio" name="backorders" value="yes-notify" required> Allow, but notify customer<br>
+                                            <input type="radio" name="backorders" value="yes" required> Allow
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Low Stock Threshold</td>
+                                        <td>
+                                            <input type="number" placeholder="Store-wide threshold (2)" name="low-stock-notify">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sold Individually</td>
+                                        <td>
+                                            <input type="checkbox" value="sold-one" name="sold-individually"> Limit purchases to 1 item per order
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Maximum Purchase Quantity</td>
+                                        <td>
+                                            <input type="number" name="max-purchase">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="tab-pane2" id="shipping">
+                                <table class="var-prod">
+                                    <tr>
+                                        <td class="var-prod-left">Weight (KG)
+                                            <span class="require-text">*</span>
+                                        </td>
+                                        <td class="var-prod-right">
+                                            <input type="number" name="weight" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="3">Parcel Size (CM)
+                                            <span class="require-text">*</span>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="parcel-w" required placeholder="Width (Integer)">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="number" name="parcel-l" required placeholder="Length">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="number" name="parcel-h" required placeholder="Height (Integer)">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shipping Fee (RM)
+                                            <span class="require-text">*</span>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="ship-fee" required>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="tab-pane2" id="attributes">
+                                <table id="var-tbl">
+                                    <tr>
+                                        <td class="var-name" style="width: 40%; border: none;">Variations</td>
+                                        <td class="add-var-name-btn" style="width: 60%; border: none;">
+                                            <button onclick="addRow()" class="add-order-button">Add Variation</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="tab-pane2" id="advanced">
+                                <table class="var-prod">
+                                    <tr>
+                                        <td class="var-prod-left">Purchase Note</td>
+                                        <td class="var-prod-right">
+                                            <textarea style="width: 100%;">
+
+                                            </textarea>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-status">
+                    <h3>Product Short Description</h3>
+                    <textarea style="width: 100%;" rows="5"></textarea>
+                </div>
+                
+                <!--
+                <div class="order-status">
+                    <h3>License</h3>
+                    <div class="tabs-container" style="margin-top: 20px;">
+                        <div class="tabs2">
+                            <ul class="tabs-list">
+                                <li class="tab2 active" data-tab="basic">Basic</li>
+                                <li class="tab2" data-tab="license-keys">License Keys</li>
+                                <li class="tab2" data-tab="license-generator">License Generator</li>
+                                <li class="tab2" data-tab="api">API</li>
+                            </ul>
+                        </div>
+
+                        <div class="tab-content2">
+                            <div class="tab-pane2 active" id="basic">
+                                <table class="var-prod">
+                                    <tr>
+                                        <td class="var-prod-left">Delivered Quantity</td>
+                                        <td class="var-prod-right">
+                                            <input type="text" value="1">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="var-prod-left">Show Delivered License Keys In</td>
+                                        <td class="var-prod-right">
+                                            <select name="deliver-license-key-in">
+                                                <option value="email-web">Email and Website</option>
+                                                <option value="email">Email Only</option>
+                                                <option value="web">Website Only</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="var-prod-left">Display License Key As</td>
+                                        <td class="var-prod-right">
+                                            <select name="deliver-license-key-as">
+                                                <option value="text-img">Text and Image</option>
+                                                <option value="text">Text Only</option>
+                                                <option value="img">Image Only</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        
+                            <div class="tab-pane2" id="license-keys">
+                                <table class="var-prod">
+                                    <tr>
+                                        <td class="var-prod-left">SKU</td>
+                                        <td class="var-prod-right">
+                                            <input type="text" maxlength="50">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>GTIN</td>
+                                        <td>
+                                            <input type="text" maxlength="50" placeholder="GTIN code">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>GTIN, UPC, EAN or ISBN</td>
+                                        <td>
+                                            <input type="text" maxlength="50">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Quantity
+                                            <span class="require-text">*</span>
+                                        </td>
+                                        <td>
+                                            <input type="number" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Allow backorders?
+                                            <span class="require-text">*</span>
+                                        </td>
+                                        <td>
+                                            <input type="radio" name="backorders" value="no" checked required> Do not allow<br>
+                                            <input type="radio" name="backorders" value="yes-notify" required> Allow, but notify customer<br>
+                                            <input type="radio" name="backorders" value="yes" required> Allow
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Low Stock Threshold</td>
+                                        <td>
+                                            <input type="number" placeholder="Store-wide threshold (2)" name="low-stock-notify">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sold Individually</td>
+                                        <td>
+                                            <input type="checkbox" value="sold-one" name="sold-individually"> Limit purchases to 1 item per order
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Maximum Purchase Quantity</td>
+                                        <td>
+                                            <input type="number" name="max-purchase">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="tab-pane2" id="license-generator">
+                                <table class="var-prod">
+                                    <tr>
+                                        <td class="var-prod-left">Weight (KG)
+                                            <span class="require-text">*</span>
+                                        </td>
+                                        <td class="var-prod-right">
+                                            <input type="number" name="weight" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="3">Parcel Size (CM)
+                                            <span class="require-text">*</span>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="parcel-w" required placeholder="Width (Integer)">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="number" name="parcel-l" required placeholder="Length">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="number" name="parcel-h" required placeholder="Height (Integer)">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shipping Fee (RM)
+                                            <span class="require-text">*</span>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="ship-fee" required>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="tab-pane2" id="api">
+                                <table id="var-tbl">
+                                    <tr>
+                                        <td class="var-name" style="width: 40%; border: none;">Variations</td>
+                                        <td class="add-var-name-btn" style="width: 60%; border: none;">
+                                            <button onclick="addRow()" class="add-order-button">Add Variation</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="tab-pane2" id="advanced">
+                                <table class="var-prod">
+                                    <tr>
+                                        <td class="var-prod-left">Purchase Note</td>
+                                        <td class="var-prod-right">
+                                            <textarea style="width: 100%;">
+
+                                            </textarea>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                -->
+            </div>
+
+            <!-- Right Side -->
+            <div class="order-details-right-section">
+                <div class="order-status">
+                    <h3>Publish</h3>
+                    <button class="add-new-order-reset-btn">Preview</button>
+                    <table class="var-prod prod-publish">
+                        <tr>
+                            <td class="var-prod-left" style="padding-left: 0;">
+                                Status
+                            </td>
+                            <td class="var-prod-right">
+                                <select name="prod-status">
+                                    <option value="live">Live</option>
+                                    <option value="unpublish">Unpublished</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Visibility
+                            </td>
+                            <td>
+                                <select name="prod-visit">
+                                    <option value="public">Public</option>
+                                    <option value="private">Private</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Publish
+                            </td>
+                            <td>
+                                <input type="datetime-local">
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <button class="add-order-button publish-btn">Publish</button>
+                    <button class="add-new-order-reset-btn publish-btn">Save Draft</button>
+                </div>
+
+                <div class="order-status">
+                    <h3>Product Image</h3>
+                    <input type="file" style="margin-top: 20px;">
+                </div>
+
+                <div class="order-status">
+                    <h3>Product Gallery</h3>
+                    <input type="file" style="margin-top: 20px;">
+                </div>
+
+                <div class="order-status">
+                    <h3>Product Tags</h3>
+                    <button id="addTagButton" style="margin-left: 10px;" class="add-new-order-reset-btn">Add</button>
+                    <input type="text" id="tagsInput" style="margin-top: 10px; width: 100%; height: 30px;">
+                    <div id="tagsList" style="margin-top: 20px;">
+                    </div>
+                </div>
+
+                
+                <div class="order-status">
+                    <h3>Branda</h3> <br>
+                    <select name="prod-brand" class="prod-brand">
+                        <option value="public">Asus</option>
+                        <option value="private">Acer</option>
+                    </select>
+                </div>
+
+                
+                <div class="order-status">
+                    <h3>Product Video</h3>
+                    <input type="url" placeholder="Video URL" style="margin-top: 20px; width: 100%; height: 30px;">
+                </div>
+            </div>
+
+            
+                    
+                </div>
+            </div>
+        </main>
+
+        <!--Footer-->
+        <footer>
+            <p>&copy; 2025 TFH Sdn. Bhd.. All Rights Reserved.</p>
+        </footer>
+
+        <!--Chat-->
+        <a href="#" class="chat-button" target="_blank" title="Chat">
+            <img src="../images/chat.png" title="Chat" alt="Chat Icon" height="40px" width="40px">
+        </a>
+    </body>
+</html>

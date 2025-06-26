@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login - TFH</title>
+        <link href="login-register.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="login-container">
+            <h2>Login</h2>
+
+            <div class="tabs">
+                <div id="customer-tab" class="active" onclick="toggleLoginForm('customer')">Customer</div>
+                <div id="staff-tab" onclick="toggleLoginForm('staff')">Staff</div>
+            </div>
+
+            <div id="customer-login" class="login-form active">
+                <div id="email-section">
+                    <label>Email address: <span class="required">*</span></label>
+                    <input type="email" id="customer-email" required>
+                    <button type="button" onclick="validateCustomerEmail()">Next</button>
+                </div>
+
+                <div id="name-section" class="hidden">
+                    <img id="security-image-customer" class="security-image"
+                        src="images/product_image/Apple iMac 2024 Four Thunderbolt port.png" alt="Security Image">
+                    <p>Are you * * * KAHIROL?</p>
+                    <div class="button-group">
+                        <button type="button" onclick="validateCustomerName(true)">Yes</button>
+                        <button type="button" onclick="validateCustomerName(false)">No</button>
+                    </div>
+                </div>
+
+                <div id="password-section" class="hidden">
+                    <label>Password: <span class="required">*</span></label>
+                    <input type="password" id="customer-password" required>
+                    <div class="captcha-otp-container">
+                        <div class="captcha-label-input">
+                            <label>One-time password: <span class="required">*</span></label>
+                            <input type="text" id="customer-captcha" required>
+                        </div>
+                        <div class="request-otp-button">
+                            <button type="button" onclick="requestCaptcha('customer')">Request OTP</button>
+                        </div>
+                    </div>
+                    <button type="button" onclick="submitLogin('customer')">Login</button>
+                </div>
+
+                <div id="customer-error" class="error hidden"></div>
+            </div>
+
+            <div id="staff-login" class="login-form">
+                <div id="staff-email-section">
+                    <label>Email address: <span class="required">*</span></label>
+                    <input type="email" id="staff-email" required>
+                    <button type="button" onclick="validateStaffEmail()">Next</button>
+                </div>
+
+                <div id="staff-name-section" class="hidden">
+                    <img id="security-image-staff" class="security-image" src="images/product_image/Apple MacBook Pro.png"
+                        alt="Security Image">
+                    <p>Are you * * XUAN?</p>
+                    <div class="button-group">
+                        <button type="button" onclick="validateStaffName(true)">Yes</button>
+                        <button type="button" onclick="validateStaffName(false)">No</button>
+                    </div>
+                </div>
+
+                <div id="staff-password-section" class="hidden">
+                    <label>Staff ID: <span class="required">*</span></label>
+                    <input type="text" id="staff-id" required>
+                    <label>Password: <span class="required">*</span></label>
+                    <input type="password" id="staff-password" required>
+                    <div class="captcha-otp-container">
+                        <div class="captcha-label-input">
+                            <label>One-time password: <span class="required">*</span></label>
+                            <input type="text" id="staff-captcha">
+                        </div>
+                        <div class="request-otp-button">
+                            <button type="button" onclick="requestCaptcha('staff')" class="colorBtn">Request OTP</button>
+                        </div>
+                    </div>
+                    <button type="button" onclick="submitLogin('staff')">Login</button>
+                </div>
+
+                <div id="staff-error" class="error hidden"></div>
+            </div>
+
+            <div class="switch-role">
+                <p><a href="#">Forgot password?</a></p>
+            </div>
+
+            <div class="sign-up">
+                <p>New user? <a href="register.html">Sign Up</a></p>
+            </div>
+        </div>
+
+        <a href="index.html" class="floating-button">Shop</a>
+
+        <div class="footer">
+            <p>&copy; 2025 TFH Sdn. Bhd.. All Rights Reserved.</p>
+        </div>
+
+        <script>
+            function toggleLoginForm(role) {
+                if (role === 'customer') {
+                    document.getElementById('customer-tab').classList.add('active');
+                    document.getElementById('staff-tab').classList.remove('active');
+                    document.getElementById('customer-login').classList.add('active');
+                    document.getElementById('staff-login').classList.remove('active');
+                    document.getElementById('staff-error').classList.add('hidden');
+                    document.getElementById('staff-error').textContent = '';
+                } else {
+                    document.getElementById('staff-tab').classList.add('active');
+                    document.getElementById('customer-tab').classList.remove('active');
+                    document.getElementById('staff-login').classList.add('active');
+                    document.getElementById('customer-login').classList.remove('active');
+                    document.getElementById('customer-error').classList.add('hidden');
+                    document.getElementById('customer-error').textContent = '';
+                }
+            }
+
+            function validateCustomerEmail() {
+                const email = document.getElementById('customer-email').value;
+                if (email === 'hannah.farzana.binti.kahirol@outlook.com') {
+                    document.getElementById('email-section').classList.add('hidden');
+                    document.getElementById('name-section').classList.remove('hidden');
+                    document.getElementById('customer-error').classList.add('hidden');
+                    document.getElementById('customer-error').textContent = '';
+                } else {
+                    document.getElementById('customer-error').textContent = 'User does not exist.';
+                    document.getElementById('customer-error').classList.remove('hidden');
+                }
+            }
+
+            function validateCustomerName(isValid) {
+                if (isValid) {
+                    document.getElementById('name-section').classList.add('hidden');
+                    document.getElementById('password-section').classList.remove('hidden');
+                    document.getElementById('customer-error').classList.add('hidden');
+                    document.getElementById('customer-error').textContent = '';
+                } else {
+                    document.getElementById('customer-email').value = '';
+                    document.getElementById('email-section').classList.remove('hidden');
+                    document.getElementById('name-section').classList.add('hidden');
+                    document.getElementById('customer-error').textContent = 'Name mismatch. Please try again.';
+                    document.getElementById('customer-error').classList.remove('hidden');
+                }
+            }
+
+            function validateStaffEmail() {
+                const email = document.getElementById('staff-email').value;
+                if (email === 'teo.yu.xuan@outlook.com') {
+                    document.getElementById('staff-email-section').classList.add('hidden');
+                    document.getElementById('staff-name-section').classList.remove('hidden');
+                    document.getElementById('staff-error').classList.add('hidden');
+                    document.getElementById('staff-error').textContent = '';
+                } else {
+                    document.getElementById('staff-error').textContent = 'User does not exist.';
+                    document.getElementById('staff-error').classList.remove('hidden');
+                }
+            }
+
+            function validateStaffName(isValid) {
+                if (isValid) {
+                    document.getElementById('staff-name-section').classList.add('hidden');
+                    document.getElementById('staff-password-section').classList.remove('hidden');
+                    document.getElementById('staff-error').classList.add('hidden');
+                    document.getElementById('staff-error').textContent = '';
+                } else {
+                    document.getElementById('staff-email').value = '';
+                    document.getElementById('staff-email-section').classList.remove('hidden');
+                    document.getElementById('staff-name-section').classList.add('hidden');
+                    document.getElementById('staff-error').textContent = 'Name mismatch. Please try again.';
+                    document.getElementById('staff-error').classList.remove('hidden');
+                }
+            }
+
+            function requestCaptcha(role) {
+                if (role === 'customer') {
+                    document.getElementById('customer-error').textContent = 'One-time password requested. Check your email.';
+                    document.getElementById('customer-error').classList.remove('hidden');
+                    document.getElementById('customer-captcha').value = '';
+                } else {
+                    document.getElementById('staff-error').textContent = 'One-time password requested. Check your email.';
+                    document.getElementById('staff-error').classList.remove('hidden');
+                    document.getElementById('staff-captcha').value = '';
+                }
+            }
+
+            function submitLogin(role) {
+                let isValid = false;
+
+                if (role === 'customer') {
+                    document.getElementById('customer-error').classList.add('hidden');
+                    document.getElementById('customer-error').textContent = '';
+                    const password = document.getElementById('customer-password').value;
+                    const captcha = document.getElementById('customer-captcha').value;
+
+                    if (password === 'ABcd1234@' && captcha === '123456') {
+                        isValid = true;
+                    }
+                } else {
+                    document.getElementById('staff-error').classList.add('hidden');
+                    document.getElementById('staff-error').textContent = '';
+                    const id = document.getElementById('staff-id').value;
+                    const password = document.getElementById('staff-password').value;
+                    const captcha = document.getElementById('staff-captcha').value;
+
+                    if (id === '241DT2409B' && password === 'ABcd1234@' && captcha === '123456') {
+                        isValid = true;
+                    }
+                }
+
+                if (isValid) {
+                    if (role === 'customer') {
+                        window.location.href = 'my-account.html';
+                    } else {
+                        window.location.href = 'admin/dashboard.html';
+                    }
+                } else {
+                    if (role === 'customer') {
+                        document.getElementById('customer-error').textContent = 'Invalid credentials or OTP.';
+                        document.getElementById('customer-error').classList.remove('hidden');
+                    } else {
+                        document.getElementById('staff-error').textContent = 'Invalid credentials or OTP.';
+                        document.getElementById('staff-error').classList.remove('hidden');
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

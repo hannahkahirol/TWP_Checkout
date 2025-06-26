@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TFH Seller Center</title>
+
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            window.onload = function() {
+                const numbers = document.querySelectorAll('.todo-item-number');
+                
+                numbers.forEach(function (number) {
+                    const target = +number.getAttribute('data-target'); 
+                    let current = 0;
+
+                    const interval = setInterval(function () {
+                        number.innerText = current;
+                        if (current === target) {
+                            clearInterval(interval); 
+                        } else {
+                            current++;
+                        }
+                    }, 50);
+
+                    const sideMenus = document.querySelectorAll('.side-menu-content');
+                    sideMenus.forEach(function(menu) {
+                        menu.style.display = 'block'; 
+                        var arrow = menu.previousElementSibling.querySelector('.side-menu-drop');
+                        if (arrow) {
+                            arrow.classList.add('open'); 
+                        }
+                    });
+                });
+
+                const ctx = document.getElementById('salesTrendChart').getContext('2d');
+                
+                if (ctx) {
+                    const salesData = [25965, 35202, 12568, 45205, 20223, 45630, 10235];
+
+                    const salesTrendChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: ['6/5/2025', '7/5/2025', '8/5/2025', '9/5/2025', '10/5/2025', '11/5/2025', '12/5/2025'],
+                            datasets: [{
+                                label: 'Sales (RM)',
+                                data: salesData,
+                                borderColor: '#ff884b',
+                                backgroundColor: 'rgba(248, 183, 122, 0.2)',
+                                fill: true,
+                                tension: 0.4,
+                                pointBackgroundColor: '#ff884b',
+                                pointRadius: 5,
+                                borderWidth: 2,
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: true,
+                            scales: {
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Date'
+                                    },
+                                    beginAtZero: true,
+                                },
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: 'Sales (RM)'
+                                    },
+                                    beginAtZero: true,
+                                    max: 50000,
+                                }
+                            },
+                            layout: {
+                                padding: {
+                                    left: 10,
+                                    right: 10,
+                                    top: 10,
+                                    bottom: 10
+                                }
+                            },
+                        }
+                    });
+                } else {
+                    console.error('Canvas element not found!');
+                }
+            };
+        </script>
+    </head>
+    <body>
+        <header>
+            <!--Header Bar-->
+            <div class="head-bar">
+                <a href="dashboard.html">
+                    <img src="../images/header-logo2.png" title="Logo" alt="Logo" width="100px" height="30px">
+                </a>
+
+                <div class="head-content-box">
+                    <a href="dashboard.html">Seller Center</a>
+                </div>
+
+                <!--Header Bar > Action-->
+                <div class="head-action">
+                    <!--Notification Action-->
+                    <div class="head-notify-action">
+                        <button onclick="toggleNotification()">
+                            <img src="../images/notification.png" title="Notification" alt="Notification Icon" width="16.5px" height="16.5px">
+                        </button>
+
+                        <!--Header Bar > Action > Notification Bar-->
+                        <div class="head-notify-bar">
+                            <!--Header Bar > Action > Notification Bar > Header-->
+                            <div class="head-notify-bar-head">
+                                <h3>Notification</h3>
+                                <div class="head-notify-bar-head-action">
+                                    <button class="head-notify-bar-head-button" onclick="refreshNotifications()">
+                                        <img src="../images/refresh.png" title="Refresh" alt="Refresh Icon" width="16px" height="16px">
+                                    </button>
+                                    <div class="head-notify-bar-head-splitter"></div>
+                                    <button class="head-notify-bar-head-button" onclick="toggleNotification()">
+                                        <img src="../images/close.png" title="Close" alt="Close Icon" width="16px" height="16px">
+                                    </button>
+                                </div>
+                            </div>
+                            <!--Header Bar > Action > Notification Bar > Item 1-->
+                            <div class="head-notify-bar-item">
+                                    <span class="head-notify-bar-item-title">New Login Alert</span>
+                                    <span class="head-notify-bar-item-time">06/05/2025 11:22</span>
+                                    <p>A new login has been detected on your account at Petaling Jaya on desktop at 06-05-2025 11:22. If this was not done by you, please contact IT department immediately.</p>
+                            </div>
+                            <!--Header Bar > Action > Notification Bar > Item 2-->
+                            <div class="head-notify-bar-item">
+                                    <span class="head-notify-bar-item-title">New Login Alert</span>
+                                    <span class="head-notify-bar-item-time">05/05/2025 20:22</span>
+                                    <p>A new login has been detected on your account at Petaling Jaya on desktop at 05-05-2025 20:22. If this was not done by you, please contact IT department immediately.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Header Bar > Action > Notification Bar > Splitter-->
+                    <div class="head-action-split"></div>
+
+                    <!--Header Bar > Action > Notification Bar > Account Information-->
+                    <div class="head-action-acc-info">
+                        <img class="head-acc-avatar" src="../images/avatar.png" title="Avatar" alt="Avatar" height="32px" width="32px">
+                        <span class="head-acc-name">TEO YU XUAN</span>
+                        <button class="head-acc-action" onclick="toggleHeadAccDrop()">
+                            <img src="../images/arrow-down.png" title="Dropdown" alt="Dropdown Arrow" width="16px" height="16px">
+                        </button>
+
+                        <!--Header Bar > Action > Notification Bar > Account Information > Dropdown-->
+                        <div class="head-acc-drop" id="headAccDrop">
+                            <div>
+                                <ul>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/store-information.png" title="Store Information" alt="Store Information">
+                                        <span>Store Information</span>
+                                    </li>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/store-setting.png" title="Store Setting" alt="Store Setting">
+                                        <span>Store Setting</span>
+                                    </li>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/logout.png" title="Logout" alt="Logout">
+                                        <span>Logout</span>
+                                    </li>
+                                </ul>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <nav>
+            <!--Side Menu-->
+            <div class="side-menu">
+                <!--Side Menu > Item 1-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title">
+                        <a href="dashboard.html">Dashboard</a>
+                    </div>
+                </div>
+                <!--Side Menu > Item 2-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('side-menu-order')">
+                        <span>Order</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="side-menu-order" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="my-orders.html">My Orders</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="add-new-order.html">Add New Order</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 3-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('product-menu')">
+                        <span>Product</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="product-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="my-products.html">My Products</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="add-new-product.html">Add New Product</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 4-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('marketing-menu')">
+                        <span>Marketing</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="marketing-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="discount.html">Discount</a>
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="vouchers.html">Vouchers</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 5-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('finance-menu')">
+                        <span>Finance</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="finance-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="payment.html">Payment</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 6-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('store-menu')">
+                        <span>Store</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="store-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="store-information.html">Store Information</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="store-setting.html">Store Setting</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <!--Dashboard-->
+            <div class="dashboard-container">
+                <!--Dashboard > Content-->
+                <div class="dashboard">
+                    <!--Dashboard > Content > Notification Bar -->
+                    <div class="notify-bar">
+                        <p><strong>🔔</strong> Submit a form to rearrange pickups if the logistics provider fails to show up or misses parcels. <span class="notify-bar-link"><a href="#">Learn more</a></span></p>
+                    </div>
+
+                    <!--Dashboard > Content > To-Do List-->
+                    <div class="todo-container">
+                        <!--Dashboard > Content > To-Do List > Heading-->
+                        <div class="todo-head">
+                            <h3>To Do List</h3>
+                        </div>
+
+                        <div class="todo">
+                            <!--Dashboard > Content > To-Do List > Item 1-->
+                            <div class="todo-item">
+                                <h3>To-Process Shipment</h3>
+                                <p><span class="todo-item-number" data-target="45">45</span></p>
+                            </div>
+                            <!--Dashboard > Content > To-Do List > Item 2-->
+                            <div class="todo-item">
+                                <h3>Processed Shipment</h3>
+                                <p><span class="todo-item-number" data-target="108">108</span></p>
+                            </div>
+                            <!--Dashboard > Content > To-Do List > Item 3-->
+                            <div class="todo-item">
+                                <h3>Return/Refund/Cancel</h3>
+                                <p><span class="todo-item-number" data-target="21">21</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Dashboard > Content > Sales Trend-->
+                    <div class="sales-trend">
+                        <h3>Sales Trend (Last 7 Days)</h3>
+                        <canvas id="salesTrendChart"></canvas>
+                    </div>
+
+                    <div class="todo-container" style="margin-bottom: 20px;">
+                        <div class="todo-head">
+                            <h3>Key Metrics</h3>
+                        </div>
+
+                        <div class="todo">
+                            <div class="todo-item" style="width: 25%; text-align: left;">
+                                <h3>Sales</h3>
+                                <p><span style="font-weight: normal; color: black;">RM</span> <span class="todo-item-number" data-target="12654">12,654</span></p>
+                                <small>vs 00:00-00:00 Yesterday <b>13.00%</b></small>
+                            </div>
+                            <div class="todo-item" style="width: 25%; text-align: left;">
+                                <h3>Order(s)</h3>
+                                <p><span class="todo-item-number" data-target="35">35</span></p>
+                                <small>vs 00:00-00:00 Yesterday <b>25.00%</b></small>
+                            </div>
+                            <div class="todo-item" style="width: 25%; text-align: left;">
+                                <h3>Conversion Rate</h3>
+                                <p><span class="todo-item-number" data-target="55">55</span> <span style="color: black;"> %</span></p>
+                                <small>vs 00:00-00:00 Yesterday <b>21.00%</b></small>
+                            </div>
+                            <div class="todo-item" style="width: 25%; text-align: left;">
+                                <h3>Visitor(s)</h3>
+                                <p><span class="todo-item-number" data-target="105">105</span></p>
+                                <small>vs 00:00-00:00 Yesterday <b>64.00%</b></small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--Dashboard > Content > Annoucement-->
+                    <div class="announce">
+                        <h3>Announcements</h3>
+                        <!--Dashboard > Content > Annoucement > Item 1-->
+                        <div class="announce-item">
+                            <div class="announce-head">
+                                <span>Scheduled Maintenance on May 12</span>
+                            </div>
+                            <div class="announce-content">
+                                <p>We will be performing scheduled maintenance on May 12, 2025, from 2:00 AM to 4:00 AM. During this time, some services may be unavailable. We apologize for the inconvenience.</p>
+                                <a href="#" class="announce-button">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!--Footer-->
+        <footer>
+            <p>&copy; 2025 TFH Sdn. Bhd.. All Rights Reserved.</p>
+        </footer>
+
+        <!--Chat-->
+        <a href="#" class="chat-button" target="_blank" title="Chat">
+            <img src="../images/chat.png" title="Chat" alt="Chat Icon" height="40px" width="40px">
+        </a>
+    </body>
+</html>

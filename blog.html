@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog | TFH</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="header-footer.css">
+    <script src="header-footer.js"></script>
+</head>
+<body>
+    <header class="header" >
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/header-logo.png" alt="TechHub" class="logo-img">
+            </a>
+            
+            <div class="nav-links">
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="track-order.html" class="nav-link">Track Order</a>
+                <a href="contact-us.html" class="nav-link">Contact Us</a>
+                <a href="about-us.html" class="nav-link">About Us</a>
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Search products...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <div class="icons">
+                <a href="my-account.html" class="icon">
+                    <i class="fas fa-user"></i>
+                </a>
+                <a href="cart.html" class="icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Featured Section -->
+    <div class="featured" style="margin-top: 100px;">
+      <img src="images/5 Must-Have Devices.jpg" alt="Latest blog" class="featured-image">
+      <h3>5 Must-Have Devices Every IT Student Needs in 2025</h3>
+      <p>Explore our top picks for laptops, routers, and accessories that’ll power your productivity and performance.</p>
+      <a class="read-more" href="#">Read More →</a>
+    </div>
+
+    <!-- Latest Posts -->
+    <h2 class="section-title">Latest Posts</h2>
+    <div class="posts">
+      <div class="post-card">
+        <img src="images/router.jpg" alt="Post 1">
+        <div class="post-content">
+          <small class="post-date">Published: 1 May 2025</small>
+          <h4>Router Setup Tips for Beginners</h4>
+          <p>Maximize your internet speed and security with these setup tricks.</p>
+          <a class="read-more" href="#">Read More →</a>
+        </div>
+      </div>
+      <div class="post-card">
+        <img src="images/switches.jpg" alt="Post 2">
+        <div class="post-content">
+          <small class="post-date">Published: 25 April 2025</small>
+          <h4>Switches: Managed vs Unmanaged</h4>
+          <p>Choose the right switch for your office or home needs.</p>
+          <a class="read-more" href="#">Read More →</a>
+        </div>
+      </div>
+      <div class="post-card">
+        <img src="images/laptop.jpg" alt="Post 3">
+        <div class="post-content">
+          <small class="post-date">Published: 10 April 2025</small>
+          <h4>Top 3 Budget Laptops for 2025</h4>
+          <p>Powerful performance without breaking the bank.</p>
+          <a class="read-more" href="#">Read More →</a>
+        </div>
+      </div>
+    </div>
+
+<h2 class="section-title">Past Archives</h2>
+
+<!-- 2025 Archive -->
+<details class="archive-year">
+  <summary>2025 <span class="arrow">›</span></summary>
+  <div class="archive-posts">
+    <div class="post">
+      <small class="date">15 April 2025</small><br>
+      <a class="post-title" href="#">Tech Deals & Campus Gear</a> <!-- Add blog link here -->
+    </div>
+    <div class="post">
+      <small class="date">20 March 2025</small><br>
+      <a class="post-title" href="#">Router Upgrade Checklist</a> <!-- Add blog link here -->
+    </div>
+    <div class="post">
+      <small class="date">10 February 2025</small><br>
+      <a class="post-title" href="#">How to Buy a Laptop Online</a> <!-- Add blog link here -->
+    </div>
+  </div>
+</details>
+
+<hr class="archive-divider" />
+
+<!-- 2024 Archive -->
+<details class="archive-year">
+  <summary>2024 <span class="arrow">›</span></summary>
+  <div class="archive-posts">
+    <div class="post">
+      <small class="date">30 October 2024</small><br>
+      <a class="post-title" href="#">Essential Accessories for Students</a> <!-- Add blog link here -->
+    </div>
+    <div class="post">
+      <small class="date">18 August 2024</small><br>
+      <a class="post-title" href="#">Laptop Maintenance Tips</a> <!-- Add blog link here -->
+    </div>
+    <div class="post">
+      <small class="date">12 June 2024</small><br>
+      <a class="post-title" href="#">Building Your First PC</a> <!-- Add blog link here -->
+    </div>
+  </div>
+</details>
+
+    <!-- Newsletter Section -->
+<div class="newsletter-wrapper">
+  <div class="newsletter">
+    <h3>Join The Fam</h3>
+    <p>Sign up to our newsletter, we'll keep you up to date on the latest news and exclusive offers.</p>
+    <form id="newsletter-form">
+      <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+      <button type="submit">Subscribe</button>
+      <div class="thank-you" id="thank-you-msg">Thank you!</div>
+    </form>
+  </div>
+</div>
+
+  </section>
+
+  
+    <footer>
+        <div class="footer-content">
+            <p class="copyright">&copy; 2025 TFH Sdn. Bhd.. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+  <script>
+  document.getElementById("newsletter-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    document.getElementById("thank-you-msg").style.display = "block";
+    this.reset();
+  });
+  </script>
+
+</body>
+</html>

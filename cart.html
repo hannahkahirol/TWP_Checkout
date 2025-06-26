@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TFH Cart</title>
+  <link rel="stylesheet" href="cart.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+</head>
+<body>
+<div class="cart-container">
+  <div class="cart-header">
+    <img src="images/TFH CART.png" alt="TFH Logo" class="logo">
+    <a href="index.html" class="continue-shopping"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
+  </div>
+
+  <div class="cart-items">
+    <div class="cart-item" data-price="3999">
+      <img src="images/product_image/13-inch MacBook Air.png" alt="MacBook Air" class="item-img"/>
+      <div class="item-info">
+        <p class="item-title">13-inch MacBook Air with M2 Chip</p>
+        <p class="item-price">Unit Price: RM 3,999.00</p>
+        <div class="item-controls">
+          <button class="btn minus"><i class="fas fa-minus"></i></button>
+          <span class="qty">1</span>
+          <button class="btn plus"><i class="fas fa-plus"></i></button>
+          <button class="btn remove"><i class="fas fa-trash-alt"></i> &nbsp;Remove</button>
+        </div>
+      </div>
+      <div class="item-total">RM 3,999.00</div>
+    </div>
+  </div>
+
+  <div id="empty-cart" class="empty-cart hidden">
+    <i class="fas fa-shopping-cart"></i>
+    <p>Your cart is empty</p>
+    <a href="index.html" class="btn shop-now">Shop Now</a>
+  </div>
+
+  <div class="cart-summary">
+    <span>Total:</span>
+    <span id="total">RM 3,999.00</span>
+  </div>
+
+  <div class="free-shipping">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress"></div>
+    </div>
+    <p id="freeText" class="free-text"></p>
+    <p id="freeRemain" class="free-remain"></p>
+  </div>
+
+  <div id="notification" class="notification"></div>
+
+  <a href="checkout.html" id="checkout" class="checkout-btn">Proceed to Checkout</a>
+</div>
+
+<script src="cart.js"></script>
+</body>
+</html>

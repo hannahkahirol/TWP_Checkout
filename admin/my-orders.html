@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Orders - TFH</title>
+
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js"></script>
+        <script>
+        //Tab
+        function changeTab(event, tabName) {
+            const allTables = document.querySelectorAll('.orders-table');
+            allTables.forEach(table => {
+                table.classList.remove('active');
+            });
+
+            const allTabs = document.querySelectorAll('.tab');
+            allTabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.querySelector(`.${tabName}`).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            //Reset Filter
+            document.getElementById('resetFilter').addEventListener('click', function() {
+                document.getElementById('orderId').value = '';
+                document.getElementById('shippingChannel').value = 'all';
+            });
+        });
+        </script>
+    </head>
+    <body>
+        <header>
+            <!--Header Bar-->
+            <div class="head-bar">
+                <a href="dashboard.html">
+                    <img src="../images/logo.png" title="Logo" alt="Logo" width="30px" height="30px">
+                </a>
+
+                <div class="head-content-box">
+                    <span><a href="dashboard.html">&nbsp;&nbsp;Home</a>&nbsp;&nbsp;>&nbsp;&nbsp;</span><a href="my-orders.html"><b>My Orders</b></a>
+                </div>
+
+                <!--Header Bar > Action-->
+                <div class="head-action">
+                    <!--Notification Action-->
+                    <div class="head-notify-action">
+                        <button onclick="toggleNotification()">
+                            <img src="../images/notification.png" title="Notification" alt="Notification Icon" width="16.5px" height="16.5px">
+                        </button>
+
+                        <!--Header Bar > Action > Notification Bar-->
+                        <div class="head-notify-bar">
+                            <!--Header Bar > Action > Notification Bar > Header-->
+                            <div class="head-notify-bar-head">
+                                <h3>Notification</h3>
+                                <div class="head-notify-bar-head-action">
+                                    <button class="head-notify-bar-head-button" onclick="refreshNotifications()">
+                                        <img src="../images/refresh.png" title="Refresh" alt="Refresh Icon" width="16px" height="16px">
+                                    </button>
+                                    <div class="head-notify-bar-head-splitter"></div>
+                                    <button class="head-notify-bar-head-button" onclick="toggleNotification()">
+                                        <img src="../images/close.png" title="Close" alt="Close Icon" width="16px" height="16px">
+                                    </button>
+                                </div>
+                            </div>
+                            <!--Header Bar > Action > Notification Bar > Item 1-->
+                            <div class="head-notify-bar-item">
+                                    <span class="head-notify-bar-item-title">New Login Alert</span>
+                                    <span class="head-notify-bar-item-time">06/05/2025 11:22</span>
+                                    <p>A new login has been detected on your account at Petaling Jaya on desktop at 06-05-2025 11:22. If this was not done by you, please contact IT department immediately.</p>
+                            </div>
+                            <!--Header Bar > Action > Notification Bar > Item 2-->
+                            <div class="head-notify-bar-item">
+                                    <span class="head-notify-bar-item-title">New Login Alert</span>
+                                    <span class="head-notify-bar-item-time">05/05/2025 20:22</span>
+                                    <p>A new login has been detected on your account at Petaling Jaya on desktop at 05-05-2025 20:22. If this was not done by you, please contact IT department immediately.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Header Bar > Action > Notification Bar > Splitter-->
+                    <div class="head-action-split"></div>
+
+                    <!--Header Bar > Action > Notification Bar > Account Information-->
+                    <div class="head-action-acc-info">
+                        <img class="head-acc-avatar" src="../images/avatar.png" title="Avatar" alt="Avatar" height="32px" width="32px">
+                        <span class="head-acc-name">TEO YU XUAN</span>
+                        <button class="head-acc-action" onclick="toggleHeadAccDrop()">
+                            <img src="../images/arrow-down.png" title="Dropdown" alt="Dropdown Arrow" width="16px" height="16px">
+                        </button>
+
+                        <!--Header Bar > Action > Notification Bar > Account Information > Dropdown-->
+                        <div class="head-acc-drop" id="headAccDrop">
+                            <div>
+                                <ul>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/store-information.png" title="Store Information" alt="Store Information">
+                                        <span>Store Information</span>
+                                    </li>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/store-setting.png" title="Store Setting" alt="Store Setting">
+                                        <span>Store Setting</span>
+                                    </li>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/logout.png" title="Logout" alt="Logout">
+                                        <span>Logout</span>
+                                    </li>
+                                </ul>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <nav>
+            <!--Side Menu-->
+            <div class="side-menu">
+                <!--Side Menu > Item 1-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title">
+                        <a href="dashboard.html">Dashboard</a>
+                    </div>
+                </div>
+                <!--Side Menu > Item 2-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('side-menu-order')">
+                        <span>Order</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="side-menu-order" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="my-orders.html">My Orders</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="add-new-order.html">Add New Order</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 3-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('product-menu')">
+                        <span>Product</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="product-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="my-products.html">My Products</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="add-new-product.html">Add New Product</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 4-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('marketing-menu')">
+                        <span>Marketing</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="marketing-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="discount.html">Discount</a>
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="vouchers.html">Vouchers</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 5-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('finance-menu')">
+                        <span>Finance</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="finance-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="payment.html">Payment</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 6-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('store-menu')">
+                        <span>Store</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="store-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="store-information.html">Store Information</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="store-setting.html">Store Setting</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <!--Orders-->
+            <div class="dashboard-container">
+                <!--Orders > Content-->
+                <div class="dashboard">
+                    <!--Orders > Content > Tabs-->
+                    <div class="tabs">
+                        <button class="tab active" onclick="changeTab(event, 'all')">All</button>
+                        <button class="tab" onclick="changeTab(event, 'toShip')">To Ship</button>
+                        <button class="tab" onclick="changeTab(event, 'shipping')">Shipping</button>
+                        <button class="tab" onclick="changeTab(event, 'completed')">Completed</button>
+                        <button class="tab" onclick="changeTab(event, 'return-refund-cancel')">Return/Refund/Cancel</button>
+                    </div>
+
+                    <!--Orders > Content > Filter & Add Order-->
+                    <div class="filter-add-order">
+                        <!--Orders > Content > Filter-->
+                        <div class="order-filter">
+                            <label>Order ID:</label>
+                            <input type="number" id="orderId" placeholder="Order ID">
+
+                            <label>Shipping Channel:</label>
+                            <select id="shippingChannel">
+                                <option value="all">All Channels</option>
+                                <option value="flashExpress">Flash Express</option>
+                                <option value="j&tExpress">J&T Express</option>
+                                <option value="ninjaVan">Ninja Van</option>
+                            </select>
+                            
+                            <button id="applyFilter" class="apply-button">Apply</button>
+                            <button id="resetFilter" class="reset-button">Reset</button>
+                        </div>
+                        
+                        <!--Orders > Content > Add New Order-->
+                        <button class="add-order-button">
+                            <a href="#">Add New Order</a>
+                        </button>
+                    </div>
+                           
+                    <!--Orders > Content > Orders-->
+                    <div class="orders-table all active">
+                        <div class="todo-container">
+                            <div class="todo-head">
+                                <h3>
+                                    All Orders<br>
+                                    <small>5 Orders</small>
+                                </h3>
+                            </div>
+                            <div class="todo">
+                                <table>
+                                    <tr>
+                                        <th class="width40">Product(s)</th>
+                                        <th class="width15">Order Total (RM)</th>
+                                        <th class="width15">Status</th>
+                                        <th class="width15">Shipping Channel</th>
+                                        <th class="width15">Action</th>
+                                    </tr>
+                                    <!--Order #7490: To Ship-->
+                                    <tr class="no-border">
+                                        <td colspan="3">
+                                            <a href="#">
+                                                <b>FOOK JUAN TYNG</b>
+                                            </a>
+                                            <small>10/5/2025 4:34 PM</small>
+                                        </td>
+                                        <td>Order ID:</td>
+                                        <td>
+                                            <b>
+                                                <a href="#">#7490</a>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ul class="order-table-product-list">
+                                                <li>HP OmniBook X Laptop 14-fe1013QU SnapDragon X Plus 16GB RAM+512GB SSD 14" diagonal 2.2K touch display OPI Windows11</li>
+                                                <ul>
+                                                    <li>Quantity(s): 1</li>
+                                                </ul>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            4,399.00
+                                            <br>
+                                            <small>Online Banking</small>
+                                        </td>
+                                        <td>
+                                            <b>To Ship</b>
+                                        </td>
+                                        <td>J&T Express</td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Check Details</span></a>
+                                        </td>
+                                    </tr>
+                                    <!--Order #7489: Shipping-->
+                                    <tr class="no-border">
+                                        <td colspan="3">
+                                            <a href="#">
+                                                <b>CHONG ZI XUAN</b>
+                                            </a>
+                                            <small>8/5/2025 3:56 PM</small>
+                                        </td>
+                                        <td>Order ID:</td>
+                                        <td>
+                                            <b>
+                                                <a href="#">#7489</a>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ul class="order-table-product-list">
+                                                <li>Apple iMac 2024 (24-inch, 4.5K Retina Display, M4 Chip) Four Thunderbolt port</li>
+                                                <ul>
+                                                    <li>Color Family: Yellow</li>
+                                                    <li>Specification: M4 24GB, 512GB SSD</li>
+                                                    <li>Quantity(s): 1</li>
+                                                </ul>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            8,399.00
+                                            <br>
+                                            <small>Credit / Debit Card</small>
+                                        </td>
+                                        <td>
+                                            <b>Shipping</b>
+                                        </td>
+                                        <td>Ninja Van</td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Track Order</span></a>
+                                            <br>
+                                            <small>Parcel is out for delivery!</small>
+                                        </td>
+                                    </tr>
+                                    <!--Order #7488: Refunded-->
+                                    <tr class="no-border">
+                                        <td colspan="3">
+                                            <a href="#">
+                                                <b>TOH YUAN KAI</b>
+                                            </a>
+                                            <small>1/5/2025 2:16 PM</small>
+                                        </td>
+                                        <td>Order ID:</td>
+                                        <td>
+                                            <b>
+                                                <a>#7488</a>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ul class="order-table-product-list">
+                                                <li>
+                                                    Canon PIXMA MG2570S All-In-One Printer
+                                                    <ul>
+                                                        <li>Quantity(s): 1</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            209.00
+                                            <br>
+                                            <small>Online Banking</small>
+                                        </td>
+                                        <td>
+                                            <b>Refunded</b>
+                                        </td>
+                                        <td>J&T Express</td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Check Details</span></a>
+                                        </td>
+                                    </tr>
+                                    <!--Order #7487: Completed-->
+                                    <tr class="no-border">
+                                        <td colspan="3">
+                                            <a href="#">
+                                                <b>HANNAH FARZANA BINTI KAHIROL</b>
+                                            </a>
+                                            <small>1/5/2025 10:05 AM</small>
+                                        </td>
+                                        <td>Order ID:</td>
+                                        <td>
+                                            <b>
+                                                <a href="order-details-7487.html" target="_blank">#7487</a>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ul class="order-table-product-list">
+                                                <li>
+                                                    Acer Nitro V 15 ANV15-51-54AA 15.6" FHD 144Hz Laptop ( i5-13420H, 16GB, 512GB SSD, RTX2050 4GB, W11, HS )
+                                                    <ul>
+                                                        <li>Quantity(s): 1</li>
+                                                    </ul>
+                                                </li><br>
+                                                <li>
+                                                    Acer Aspire 14 AI CU5-226V/16GB RAM+512GB SSD/14''/Office Preloaded
+                                                    <ul>
+                                                        <li>Quantity(s): 1</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            7,198.00
+                                            <br>
+                                            <small>Credit / Debit Card</small>
+                                        </td>
+                                        <td>
+                                            <b>Completed</b>
+                                        </td>
+                                        <td>J&T Express</td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Print Invoice</span></a>
+                                        </td>
+                                    </tr>
+                                    <!--Order #7486: Cancelled-->
+                                    <tr class="no-border">
+                                        <td colspan="3">
+                                            <a href="#">
+                                                <b>SIM ZHI YANG</b>
+                                            </a>
+                                            <small>25/4/2025 7:45 PM</small>
+                                        </td>
+                                        <td>Order ID:</td>
+                                        <td>
+                                            <b>
+                                                <a href="#">#7486</a>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ul class="order-table-product-list">
+                                                <li>
+                                                    Apple MacBook Air (M4 chip, 2025)
+                                                    <ul>
+                                                        <li>Color Family: Sky Blue</li>
+                                                        <li>Capacity Spec: 24GB + 512GB</li>
+                                                        <li>Model Size: 15-inch</li>
+                                                        <li>Quantity(s): 1</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            7,198.00
+                                            <br>
+                                            <small>Credit / Debit Card</small>
+                                        </td>
+                                        <td>
+                                            <b>Cancelled</b><br>
+                                            <small>Cancelled by buyer</small>
+                                        </td>
+                                        <td>J&T Express</td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Check Details</span></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--Orders > Content > Orders > To Ship-->
+                    <div class="orders-table toShip">
+                        <div class="todo-container">
+                            <div class="todo-head">
+                                <h3>
+                                    To Ship<br>
+                                    <small>1 Order</small>
+                                </h3>
+                            </div>
+                                <table class="order-table">
+                                    <tr>
+                                        <th class="width40">Product(s)</th>
+                                        <th class="width15">Order Total (RM)</th>
+                                        <th class="width15">Status</th>
+                                        <th class="width15">Shipping Channel</th>
+                                        <th class="width15">Action</th>
+                                    </tr>
+                                    <!--Order #7490: To Ship-->
+                                    <tr class="no-border">
+                                        <td colspan="3">
+                                            <a href="#">
+                                                <b>FOOK JUAN TYNG</b>
+                                            </a>
+                                            <small>10/5/2025 4:34 PM</small>
+                                        </td>
+                                        <td>Order ID:</td>
+                                        <td>
+                                            <b>
+                                                <a href="#">#7490</a>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ul class="order-table-product-list">
+                                                <li>HP OmniBook X Laptop 14-fe1013QU SnapDragon X Plus 16GB RAM+512GB SSD 14" diagonal 2.2K touch display OPI Windows11</li>
+                                                <ul>
+                                                    <li>Quantity(s): 1</li>
+                                                </ul>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            4,399.00
+                                            <br>
+                                            <small>Online Banking</small>
+                                        </td>
+                                        <td>
+                                            <b>To Ship</b>
+                                        </td>
+                                        <td>J&T Express</td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Check Details</span></a>
+                                        </td>
+                                    </tr>
+                                    </table>
+                        </div>
+                    </div>
+                    
+                    <!--Orders > Content > Orders > Shipping-->
+                    <div class="orders-table shipping">
+                        
+                        <div class="todo-container">
+                            <div class="todo-head">
+                                <h3>
+                                    Shipping<br>
+                                    <small>1 Order</small>
+                                </h3>
+                            </div>
+                                <table class="order-table">
+                                    <tr>
+                                        <th class="width40">Product(s)</th>
+                                        <th class="width15">Order Total (RM)</th>
+                                        <th class="width15">Status</th>
+                                        <th class="width15">Shipping Channel</th>
+                                        <th class="width15">Action</th>
+                                    </tr>
+                                    <!--Order 1: Shipping-->
+                                    <tr class="no-border">
+                                        <td colspan="3">
+                                            <a href="#">
+                                                <b>CHONG ZI XUAN</b>
+                                            </a>
+                                            <small>8/5/2025 3:56 PM</small>
+                                        </td>
+                                        <td>Order ID:</td>
+                                        <td>
+                                            <b>
+                                                <a href="#">#7489</a>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ul class="order-table-product-list">
+                                                <li>Apple iMac 2024 (24-inch, 4.5K Retina Display, M4 Chip) Four Thunderbolt port</li>
+                                                <ul>
+                                                    <li>Color Family: Yellow</li>
+                                                    <li>Specification: M4 24GB, 512GB SSD</li>
+                                                    <li>Quantity(s): 1</li>
+                                                </ul>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            8,399.00
+                                            <br>
+                                            <small>Credit / Debit Card</small>
+                                        </td>
+                                        <td>
+                                            <b>Shipping</b>
+                                        </td>
+                                        <td>Ninja Van</td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Track Order</span></a>
+                                            <br>
+                                            <small>Out for Delivery!</small>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                    </div>
+
+                    <!--Orders > Content > Orders > Completed-->
+                    <div class="orders-table completed">
+                        
+                        <div class="todo-container">
+                            <div class="todo-head">
+                                <h3>
+                                    Completed<br>
+                                    <small>1 Order</small>
+                                </h3>
+                            </div>
+                                <table class="order-table">
+                                    <tr>
+                                        <th class="width40">Product(s)</th>
+                                        <th class="width15">Order Total (RM)</th>
+                                        <th class="width15">Status</th>
+                                        <th class="width15">Shipping Channel</th>
+                                        <th class="width15">Action</th>
+                                    </tr>
+                                    <!--Order 2: Completed-->
+                                    <tr class="no-border">
+                                        <td colspan="3">
+                                            <a href="#">
+                                                <b>HANNAH FARZANA BINTI KAHIROL</b>
+                                            </a>
+                                            <small>1/5/2025 10:05 AM</small>
+                                        </td>
+                                        <td>Order ID:</td>
+                                        <td>
+                                            <b>
+                                                <a href="order-details-7487.html" target="_blank">#7487</a>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ul class="order-table-product-list">
+                                                <li>
+                                                    Acer Nitro V 15 ANV15-51-54AA 15.6" FHD 144Hz Laptop ( i5-13420H, 16GB, 512GB SSD, RTX2050 4GB, W11, HS )
+                                                    <ul>
+                                                        <li>Quantity(s): 1</li>
+                                                    </ul>
+                                                </li><br>
+                                                <li>
+                                                    Acer Aspire 14 AI CU5-226V/16GB RAM+512GB SSD/14''/Office Preloaded
+                                                    <ul>
+                                                        <li>Quantity(s): 1</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            7,198.00
+                                            <br>
+                                            <small>Credit / Debit Card</small>
+                                        </td>
+                                        <td>
+                                            <b>Completed</b>
+                                        </td>
+                                        <td>J&T Express</td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Print Invoice</span></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                        </div>
+                    </div>
+                     
+                    <!--Return/Refund/Cancel-->
+                    <div class="orders-table return-refund-cancel">
+                        
+                        <div class="todo-container">
+                            <div class="todo-head">
+                                <h3>
+                                    Return/Refund/Cancel<br>
+                                    <small>2 Orders</small>
+                                </h3>
+                            </div>
+                                <table class="order-table">
+                                    <tr>
+                                        <th class="width35">Product(s)</th>
+                                        <th class="width13">Amount (RM)</th>
+                                        <th class="width13">Request Reason</th>
+                                        <th class="width13">Request Solution</th>
+                                        <th class="width13">Request Status</th>
+                                        <th class="width13">Action</th>
+                                    </tr>
+                                    <!--Order 2: Refunded-->
+                                    <tr class="no-border">
+                                        <td colspan="4">
+                                            <a href="#">
+                                                <b>TOH YUAN KAI</b>
+                                            </a>
+                                            <small>1/5/2025 2:16 PM</small>
+                                        </td>
+                                        <td>Order ID:</td>
+                                        <td>
+                                            <b>
+                                                <a href="#">#7488</a>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ul class="order-table-product-list">
+                                                <li>
+                                                    Canon PIXMA MG2570S All-In-One Printer
+                                                    <ul>
+                                                        <li>Quantity(s): 1</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <small>Order Total</small>
+                                            <br>
+                                            209.00
+                                            <br><br>
+                                            <small>Compensation Amount</small>
+                                            <br>
+                                            -
+                                        </td>
+                                        <td>
+                                            Need to change delivery address
+                                        </td>
+                                        <td>Refund Only</td>
+                                        <td>
+                                            Request Refunded
+                                            <small>Cancellation request is approved and refunded</small>
+                                        </td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Check Details</span></a>
+                                        </td>
+                                    </tr>
+                                    <!--Order 3: Cancelled-->
+                                    <tr class="no-border">
+                                        <td colspan="4">
+                                            <a href="#">
+                                                <b>SIM ZHI YANG</b>
+                                            </a>
+                                            <small>25/4/2025 7:45 PM</small>
+                                        </td>
+                                        <td>Order ID:</td>
+                                        <td>
+                                            <b>#7486</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ul class="order-table-product-list">
+                                                <li>
+                                                    Apple MacBook Air (M4 chip, 2025)
+                                                    <ul>
+                                                        <li>Color Family: Sky Blue</li>
+                                                        <li>Capacity Spec: 24GB + 512GB</li>
+                                                        <li>Model Size: 15-inch</li>
+                                                        <li>Quantity(s): 1</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <small>Order Total</small>
+                                            <br>
+                                            7,198.00
+                                            <br><br>
+                                            <small>Compensation Amount</small>
+                                            <br>
+                                            -
+                                        </td>
+                                        <td>
+                                            Payment was not made on time
+                                        </td>
+                                        <td>Refund Only</td>
+                                        <td>
+                                            Request Refunded
+                                            <small>Cancellation request is approved and refunded</small>
+                                        </td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Check Details</span></a>
+                                        </td>
+                                    </tr>
+                                    </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!--Footer-->
+        <footer>
+            <p>&copy; 2025 TFH Sdn. Bhd.. All Rights Reserved.</p>
+        </footer>
+
+        <!--Chat-->
+        <a href="#" class="chat-button" target="_blank" title="Chat">
+            <img src="../images/chat.png" title="Chat" alt="Chat Icon" height="40px" width="40px">
+        </a>
+    </body>
+</html>

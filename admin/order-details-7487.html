@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Order Details - TFH</title>
+
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js"></script>
+        <script>
+        
+        </script>
+    </head>
+    <body>
+        <header>
+            <!--Header Bar-->
+            <div class="head-bar">
+                <a href="dashboard.html">
+                    <img src="../images/logo.png" title="Logo" alt="Logo" width="30px" height="30px">
+                </a>
+
+                <div class="head-content-box">
+                    <span><a href="dashboard.html">&nbsp;&nbsp;Home</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="my-orders.html">My Orders</a>&nbsp;&nbsp;>&nbsp;&nbsp;</span><a href="order-details-7487.html"><b>Order Details</b></a>
+                </div>
+
+                <!--Header Bar > Action-->
+                <div class="head-action">
+                    <!--Notification Action-->
+                    <div class="head-notify-action">
+                        <button onclick="toggleNotification()">
+                            <img src="../images/notification.png" title="Notification" alt="Notification Icon" width="16.5px" height="16.5px">
+                        </button>
+
+                        <!--Header Bar > Action > Notification Bar-->
+                        <div class="head-notify-bar">
+                            <!--Header Bar > Action > Notification Bar > Header-->
+                            <div class="head-notify-bar-head">
+                                <h3>Notification</h3>
+                                <div class="head-notify-bar-head-action">
+                                    <button class="head-notify-bar-head-button" onclick="refreshNotifications()">
+                                        <img src="../images/refresh.png" title="Refresh" alt="Refresh Icon" width="16px" height="16px">
+                                    </button>
+                                    <div class="head-notify-bar-head-splitter"></div>
+                                    <button class="head-notify-bar-head-button" onclick="toggleNotification()">
+                                        <img src="../images/close.png" title="Close" alt="Close Icon" width="16px" height="16px">
+                                    </button>
+                                </div>
+                            </div>
+                            <!--Header Bar > Action > Notification Bar > Item 1-->
+                            <div class="head-notify-bar-item">
+                                    <span class="head-notify-bar-item-title">New Login Alert</span>
+                                    <span class="head-notify-bar-item-time">06/05/2025 11:22</span>
+                                    <p>A new login has been detected on your account at Petaling Jaya on desktop at 06-05-2025 11:22. If this was not done by you, please contact IT department immediately.</p>
+                            </div>
+                            <!--Header Bar > Action > Notification Bar > Item 2-->
+                            <div class="head-notify-bar-item">
+                                    <span class="head-notify-bar-item-title">New Login Alert</span>
+                                    <span class="head-notify-bar-item-time">05/05/2025 20:22</span>
+                                    <p>A new login has been detected on your account at Petaling Jaya on desktop at 05-05-2025 20:22. If this was not done by you, please contact IT department immediately.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Header Bar > Action > Notification Bar > Splitter-->
+                    <div class="head-action-split"></div>
+
+                    <!--Header Bar > Action > Notification Bar > Account Information-->
+                    <div class="head-action-acc-info">
+                        <img class="head-acc-avatar" src="../images/avatar.png" title="Avatar" alt="Avatar" height="32px" width="32px">
+                        <span class="head-acc-name">TEO YU XUAN</span>
+                        <button class="head-acc-action" onclick="toggleHeadAccDrop()">
+                            <img src="../images/arrow-down.png" title="Dropdown" alt="Dropdown Arrow" width="16px" height="16px">
+                        </button>
+
+                        <!--Header Bar > Action > Notification Bar > Account Information > Dropdown-->
+                        <div class="head-acc-drop" id="headAccDrop">
+                            <div>
+                                <ul>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/store-information.png" title="Store Information" alt="Store Information">
+                                        <span>Store Information</span>
+                                    </li>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/store-setting.png" title="Store Setting" alt="Store Setting">
+                                        <span>Store Setting</span>
+                                    </li>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/logout.png" title="Logout" alt="Logout">
+                                        <span>Logout</span>
+                                    </li>
+                                </ul>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            <!--Orders-->
+            <div class="dashboard-container-2">
+                <!--Orders > Content-->
+                <div class="dashboard-2">
+                    
+
+                    
+            <!-- Left Side -->
+            <div class="order-details-left-section">
+                <div class="order-status">
+                    <h3>Completed</h3>
+                    <img src="../images/to-ship.png" width="16px" height="16px">
+                </div>
+                <div class="order-status">
+                    <h3>Customer History</h3>
+                    <img src="../images/order-history.png" width="16px" height="16px">
+                    <table class="order-details-cus-history">
+                        <tr>
+                            <td>Total orders</td>
+                            <td class="order-details-cus-history-right">1</td>
+                        </tr>
+                        <tr>
+                            <td>Total revenue</td>
+                            <td class="order-details-cus-history-right">RM 7,198</td>
+                        </tr>
+                        <tr>
+                            <td>Average order value</td>
+                            <td class="order-details-cus-history-right">RM 7,198</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="order-status">
+                    <h3>Order ID</h3>
+                    <img src="../images/order.png" width="16px" height="16px">
+                    <br><br>
+                    <span class="order-details-text">
+                    #7487
+                    </span>
+                    <br>
+                    <h3>Delivery Address</h3>
+                    <img src="../images/location.png" width="16px" height="16px">
+                    <span class="order-details-text"><br>
+                    HANNAH FARZANA BINTI KAHIROL
+                    <br>
+                    +60 19-576 1525
+                    <br>
+                    Ixora Apartment, Bukit Beruang, 75450 Melaka.
+                    </span>
+                    <br>
+
+                    <h3>Logistic Information</h3>
+                    <img src="../images/logistic.png" width="16px" height="16px">
+                    <div class="timeline-container">
+                        <ul class="timeline">
+                            <li class="timeline-item">
+                                <p class="status last-status"><b>Parcel has been delivered.</b> <a href="#">View Proof of Delivery</a></p>
+                                <p class="time">02/5/2025 06:05 PM</p>
+                            </li>
+                            <li class="timeline-item">
+                                <p class="status">Parcel is out for delivery!</p>
+                                <p class="time">02/5/2025 02:31 PM</p>
+                            </li>
+                            <li class="timeline-item">
+                                <p class="status">Parcel has arrived at the delivery hub: Jasin Hub.</p>
+                                <p class="time">02/5/2025 01:55 PM</p>
+                            </li>
+                            <li class="timeline-item">
+                                <p class="status">Parcel has departed from sorting facility.</p>
+                                <p class="time">02/5/2025 09:05 AM</p>
+                            </li>
+                            <li class="timeline-item">
+                                <p class="status">Parcel has arrived at sorting facility: MKZ sorting center.</p>
+                                <p class="time">02/5/2025 08:23 AM</p>
+                            </li>
+                            <li class="timeline-item">
+                                <p class="status">Parcel has departed from sorting facility.</p>
+                                <p class="time">02/5/2025 04:50 AM</p>
+                            </li>
+                            <li class="timeline-item">
+                                <p class="status">Parcel has arrived at sorting facility: MP3 sorting center.</p>
+                                <p class="time">01/5/2025 07:11 PM</p>
+                            </li>
+                            <li class="timeline-item">
+                                <p class="status">Parcel has been picked up by J&T Express.</p>
+                                <p class="time">01/5/2025 04:40 PM</p>
+                            </li>
+                            <li class="timeline-item">
+                                <p class="status">Courier assigned for order, wait for pick up.</p>
+                                <p class="time">01/5/2025 01:37 PM</p>
+                            </li>
+                            <li class="timeline-item">
+                                <p class="status">Seller is preparing to ship your parcel.</p>
+                                <p class="time">01/5/2025 12:15 PM</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="order-status">
+                    <h3>Payment Information</h3>
+                    <img src="../images/payment.png" width="16px" height="16px"> <br>
+                    <table class="pay-info">
+                        <tr class="pay-info-head">
+                            <td style="width: 5%;">No.</td>
+                            <td style="width: 55%;">Product(s)</td>
+                            <td style="width: 15%;">Unit Price</td>
+                            <td style="10%">Quantity</td>
+                            <td style="width: 15%;">Subtotal</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <ul class="order-table-product-list">
+                                    <li>
+                                        Acer Nitro V 15 ANV15-51-54AA 15.6" FHD 144Hz Laptop ( i5-13420H, 16GB, 512GB SSD, RTX2050 4GB, W11, HS )
+                                    </li>
+                                </ul>
+                            </td>
+                            <td class="pay-info-right">RM 3,199.00</td>
+                            <td class="pay-info-right">1</td>
+                            <td class="pay-info-right">RM 3,199.00</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>
+                                <ul class="order-table-product-list">
+                                    <li>
+                                        Acer Aspire 14 AI CU5-226V/16GB RAM+512GB SSD/14''/Office Preloaded
+                                    </li>
+                                </ul>
+                            </td>
+                            <td class="pay-info-right">RM 3,999.00</td>
+                            <td class="pay-info-right">1</td>
+                            <td class="pay-info-right">RM 3,999.00</td>
+                        </tr>
+                        <tr class="pay-info-right">
+                            <td colspan="3">Subtotal</td>
+                            <td colspan="2">RM 7,198.00</td>
+                        </tr>
+                        <tr class="pay-info-right">
+                            <td colspan="3">Shipping Subtotal</td>
+                            <td colspan="2">RM 0.00</td>
+                        </tr>
+                        <tr class="pay-info-right">
+                            <td colspan="3">Fees & Charges</td>
+                            <td colspan="2">RM 0.00</td>
+                        </tr>
+                        <tr class="pay-info-right">
+                            <td colspan="3">Payment Method</td>
+                            <td colspan="2">Online Banking</td>
+                        </tr>
+                        <tr class="pay-info-right">
+                            <td colspan="3">Total</td>
+                            <td colspan="2" class="pay-info-total-amount">RM 7,198.00</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Right Side -->
+            <div class="order-details-right-section">
+                <div class="order-status">
+                    <h3>Add a Note</h3>
+                    <img src="../images/note.png" width="16px" height="16px">
+                    <br><small>Note is not visible to customers.</small>
+                    <textarea rows="10"></textarea>
+                    <input type="submit" value="Save">
+                    <input type="reset" value="Cancel">
+                </div>
+                <div class="order-details-order-history">
+                    <h3>Order History</h3>
+                    <table>
+                        <tr>
+                            <td>
+                                <img src="../images/completed.png" width="16px">
+                            </td>
+                            <td>
+                                <span>Completed</span><br>
+                                <small>02/05/2025 06:05 PM</small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="../images/shipped.png" width="16px">
+                            </td>
+                            <td>
+                                Order status changed from Processing to Shipped.<br>
+                                <small>01/05/2025 04:40 PM</small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="../images/processing.png" width="16px">
+                            </td>
+                            <td>
+                                Order status changed from On Hold to Processing.<br>
+                                <small>01/05/2025 10:21 AM</small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 15%;">
+                                <img src="../images/order.png" width="16px">
+                            </td>
+                            <td style="width: 85%;">
+                                New Order<br>
+                                <small>01/05/2025 10:05 AM</small>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+                    
+                </div>
+            </div>
+        </main>
+
+        <!--Footer-->
+        <footer class="full-width-footer">
+            <p>&copy; 2025 TFH Sdn. Bhd.. All Rights Reserved.</p>
+        </footer>
+
+        <!--Chat-->
+        <a href="#" class="chat-button" target="_blank" title="Chat">
+            <img src="../images/chat.png" title="Chat" alt="Chat Icon" height="40px" width="40px">
+        </a>
+    </body>
+</html>

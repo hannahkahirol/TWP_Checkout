@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TFH Checkout</title>
+  <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+  <div class="checkout-container">
+    <div class="top-bar">
+      <div class="logo-area">
+        <img src="images/TFH SHOP.png" alt="TFH Logo" class="logo-img">
+      </div>
+      <div class="cart-area">
+        <a href="cart.html" class="cart-link">
+          <img src="images/bag.png" alt="Cart" class="cart-icon">
+        </a>
+      </div>
+    </div>
+
+    <div class="checkout-wrapper">
+      <div class="left-form">
+        <section class="express-checkout">
+          <h3 class="express-title">Express Checkout</h3>
+          <div class="button-row">
+            <button class="apple-pay">
+              <img src="images/apple-pay.png" alt="Apple Pay">
+            </button>
+            <button class="paypal">
+              <img src="images/paypal.png" alt="PayPal">
+            </button>
+          </div>
+          <div class="or-separator">OR</div>
+        </section>
+
+        <section class="contact-section">
+          <div class="section-header">
+            <h2>Customer Information</h2>
+            <a href="login.html" class="login-link">Log in</a>
+          </div>
+          <input type="email" placeholder="Email">
+        </section>
+
+        <section class="delivery-section">
+          <h3>Delivery</h3>
+          <select id="country">
+            <option value="">Select Country</option>
+          </select>
+
+          <div class="name-fields">
+            <input type="text" placeholder="First name">
+            <input type="text" placeholder="Last name">
+          </div>
+
+          <input type="text" placeholder="Company (optional)">
+          <input type="text" placeholder="Address">
+          <input type="text" placeholder="Apartment, suite, etc. (optional)">
+
+          <div class="location-fields">
+            <input type="text" placeholder="Postcode">
+            <input type="text" placeholder="City">
+            <select id="state">
+              <option value="">Select State/Territory</option>
+            </select>
+          </div>
+
+          <script src="country.js"></script>
+          <input type="tel" placeholder="Phone">
+        </section>
+
+        <section class="payment-section">
+          <h3>Payment</h3>
+          <p>All transactions are secure and encrypted.</p>
+
+          <div class="payment-method">
+            <label class="payment-option">
+              <div class="payment-left">
+                <input type="radio" name="payment" value="credit" checked>
+                <span>Credit Card</span>
+              </div>
+              <div class="payment-right card-icons">
+                <img src="images/visa.png" alt="Visa">
+                <img src="images/mastercard.png" alt="MasterCard">
+              </div>
+            </label>
+
+            <div class="credit-card-details">
+              <input type="text" placeholder="Card number">
+              <div class="cc-row">
+                <input type="month" placeholder="Expiration">
+                <input type="text" placeholder="Security code">
+              </div>
+              <input type="text" placeholder="Name on card">
+            </div>
+
+            <label class="payment-option">
+              <div class="payment-left">
+                <input type="radio" name="payment" value="paypal">
+                <span>PayPal</span>
+              </div>
+              <div class="payment-right">
+                <img src="images/paypal.png" alt="PayPal">
+              </div>
+            </label>
+
+            <label class="payment-option">
+              <div class="payment-left">
+                <input type="radio" name="payment" value="apple">
+                <span>Apple Pay</span>
+              </div>
+              <div class="payment-right">
+                <img src="images/apple-pay.png" alt="Apple Pay">
+              </div>
+            </label>
+          </div>
+        </section>
+
+        <button class="pay-now">Pay Now</button>
+      </div>
+
+      <div class="right-summary">
+        <div class="cart-items"></div>
+
+        <div class="discount-section">
+          <label for="discount-code">Discount code or gift card</label>
+          <div class="discount-row">
+            <input type="text" id="discount-code" placeholder="Enter code here" />
+            <button id="apply-discount" disabled>Apply</button>
+          </div>
+          <div class="discount-error">Enter a valid discount code or gift card</div>
+          <div id="loading-icon" class="hidden">Applying...</div>
+        </div>
+
+        <div class="summary-totals">
+          <p><span>Subtotal:</span> <span>RM 0.00</span></p>
+          <p><span>Shipping:</span> <span>Calculated at next step</span></p>
+          <p class="total-line"><span>Total:</span> <span class="total-amount">RM 0.00</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="checkout.js"></script>
+  <script src="payment.js"></script>
+</body>
+</html>

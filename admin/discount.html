@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Orders - TFH</title>
+
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js"></script>
+        <script>
+        //Tab
+        function changeTab(event, tabName) {
+            const allTables = document.querySelectorAll('.orders-table');
+            allTables.forEach(table => {
+                table.classList.remove('active');
+            });
+
+            const allTabs = document.querySelectorAll('.tab');
+            allTabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.querySelector(`.${tabName}`).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            //Reset Filter
+            document.getElementById('resetFilter').addEventListener('click', function() {
+                document.getElementById('orderId').value = '';
+                document.getElementById('shippingChannel').value = 'all';
+            });
+        });
+
+            window.onload = function() {
+                // Animate Numbers Function
+                const numbers = document.querySelectorAll('.todo-item-number');
+                
+                numbers.forEach(function (number) {
+                    const target = +number.getAttribute('data-target'); // Get the target number
+                    let current = 0;
+
+                    // Animate the number incrementally
+                    const interval = setInterval(function () {
+                        number.innerText = current;
+                        if (current === target) {
+                            clearInterval(interval); // Stop the animation when the target is reached
+                        } else {
+                            current++;
+                        }
+                    }, 0.1); // Adjust the speed by changing the interval (in ms)
+
+                    const sideMenus = document.querySelectorAll('.side-menu-content');
+                    sideMenus.forEach(function(menu) {
+                        menu.style.display = 'block'; // Ensure side menus are expanded
+                        var arrow = menu.previousElementSibling.querySelector('.side-menu-drop');
+                        if (arrow) {
+                            arrow.classList.add('open'); // Add open class to arrows to indicate expanded state
+                        }
+                    });
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            <!--Header Bar-->
+            <div class="head-bar">
+                <a href="dashboard.html">
+                    <img src="../images/logo.png" title="Logo" alt="Logo" width="30px" height="30px">
+                </a>
+
+                <div class="head-content-box">
+                    <span><a href="dashboard.html">&nbsp;&nbsp;Home</a>&nbsp;&nbsp;>&nbsp;&nbsp;</span><a href="discount.html"><b>Discount</b></a>
+                </div>
+
+                <!--Header Bar > Action-->
+                <div class="head-action">
+                    <!--Notification Action-->
+                    <div class="head-notify-action">
+                        <button onclick="toggleNotification()">
+                            <img src="../images/notification.png" title="Notification" alt="Notification Icon" width="16.5px" height="16.5px">
+                        </button>
+
+                        <!--Header Bar > Action > Notification Bar-->
+                        <div class="head-notify-bar">
+                            <!--Header Bar > Action > Notification Bar > Header-->
+                            <div class="head-notify-bar-head">
+                                <h3>Notification</h3>
+                                <div class="head-notify-bar-head-action">
+                                    <button class="head-notify-bar-head-button" onclick="refreshNotifications()">
+                                        <img src="../images/refresh.png" title="Refresh" alt="Refresh Icon" width="16px" height="16px">
+                                    </button>
+                                    <div class="head-notify-bar-head-splitter"></div>
+                                    <button class="head-notify-bar-head-button" onclick="toggleNotification()">
+                                        <img src="../images/close.png" title="Close" alt="Close Icon" width="16px" height="16px">
+                                    </button>
+                                </div>
+                            </div>
+                            <!--Header Bar > Action > Notification Bar > Item 1-->
+                            <div class="head-notify-bar-item">
+                                    <span class="head-notify-bar-item-title">New Login Alert</span>
+                                    <span class="head-notify-bar-item-time">06/05/2025 11:22</span>
+                                    <p>A new login has been detected on your account at Petaling Jaya on desktop at 06-05-2025 11:22. If this was not done by you, please contact IT department immediately.</p>
+                            </div>
+                            <!--Header Bar > Action > Notification Bar > Item 2-->
+                            <div class="head-notify-bar-item">
+                                    <span class="head-notify-bar-item-title">New Login Alert</span>
+                                    <span class="head-notify-bar-item-time">05/05/2025 20:22</span>
+                                    <p>A new login has been detected on your account at Petaling Jaya on desktop at 05-05-2025 20:22. If this was not done by you, please contact IT department immediately.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Header Bar > Action > Notification Bar > Splitter-->
+                    <div class="head-action-split"></div>
+
+                    <!--Header Bar > Action > Notification Bar > Account Information-->
+                    <div class="head-action-acc-info">
+                        <img class="head-acc-avatar" src="../images/avatar.png" title="Avatar" alt="Avatar" height="32px" width="32px">
+                        <span class="head-acc-name">TEO YU XUAN</span>
+                        <button class="head-acc-action" onclick="toggleHeadAccDrop()">
+                            <img src="../images/arrow-down.png" title="Dropdown" alt="Dropdown Arrow" width="16px" height="16px">
+                        </button>
+
+                        <!--Header Bar > Action > Notification Bar > Account Information > Dropdown-->
+                        <div class="head-acc-drop" id="headAccDrop">
+                            <div>
+                                <ul>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/store-information.png" title="Store Information" alt="Store Information">
+                                        <span>Store Information</span>
+                                    </li>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/store-setting.png" title="Store Setting" alt="Store Setting">
+                                        <span>Store Setting</span>
+                                    </li>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/logout.png" title="Logout" alt="Logout">
+                                        <span>Logout</span>
+                                    </li>
+                                </ul>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <nav>
+            <!--Side Menu-->
+            <div class="side-menu">
+                <!--Side Menu > Item 1-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title">
+                        <a href="dashboard.html">Dashboard</a>
+                    </div>
+                </div>
+                <!--Side Menu > Item 2-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('side-menu-order')">
+                        <span>Order</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="side-menu-order" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="my-orders.html">My Orders</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="add-new-order.html">Add New Order</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 3-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('product-menu')">
+                        <span>Product</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="product-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="my-products.html">My Products</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="add-new-product.html">Add New Product</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 4-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('marketing-menu')">
+                        <span>Marketing</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="marketing-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="discount.html">Discount</a>
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="vouchers.html">Vouchers</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 5-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('finance-menu')">
+                        <span>Finance</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="finance-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="payment.html">Payment</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 6-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('store-menu')">
+                        <span>Store</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="store-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="store-information.html">Store Information</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="store-setting.html">Store Setting</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <!--Orders-->
+            <div class="dashboard-container">
+                <!--Orders > Content-->
+                <div class="dashboard" style="padding-top: 10px;">
+                    
+                    <!--Dashboard > Content > To-Do List-->
+                    <div class="todo-container" style="margin-top: 0; margin-bottom: 20px;">
+                        <!--Dashboard > Content > To-Do List > Heading-->
+                        <div class="todo-head">
+                            <h3>Create Discount</h3>
+                            <small style="color: gray;">Create discounts to boost sales and improve conversion rate! <span class="notify-bar-link"><a href="#">Learn more</a></span></small>
+                        </div>
+
+                        <div class="todo">
+                            <!--Dashboard > Content > To-Do List > Item 1-->
+                            <div class="todo-item" style="text-align: left;">
+                                <h3>Discount Promotions</h3>
+                                <small class="promo-head-text">Set a discount for a single product</small><br>
+                                <button class="add-new-order-button" style="margin-top: 20px; margin-left: 0;">Create</button>
+                            </div>
+                            <!--Dashboard > Content > To-Do List > Item 2-->
+                            <div class="todo-item" style="text-align: left;">
+                                <h3>Bundle Deal</h3>
+                                <small class="promo-head-text">Set discounts for your products as bundles</small><br>
+                                <button class="add-new-order-button" style="margin-top: 20px; margin-left: 0;">Create</button>
+                            </div>
+                            <!--Dashboard > Content > To-Do List > Item 3-->
+                            <div class="todo-item" style="text-align: left;">
+                                <h3>Add-On Deal</h3>
+                                <small class="promo-head-text">Set a discount for products to be sold together</small><br>
+                                <button class="add-new-order-button" style="margin-top: 20px; margin-left: 0;">Create</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Orders > Content > Tabs-->
+                    <div class="tabs">
+                        <button class="tab active" onclick="changeTab(event, 'all')">All</button>
+                        <button class="tab" onclick="changeTab(event, 'toShip')">Discount Promotions</button>
+                        <button class="tab" onclick="changeTab(event, 'shipping')">Bundel Deal</button>
+                        <button class="tab" onclick="changeTab(event, 'completed')">Add-on Deal</button>
+                    </div>
+
+                    <!--Dashboard > Content > To-Do List-->
+                    <div class="todo-container" style="margin-bottom: 20px;">
+                        <!--Dashboard > Content > To-Do List > Heading-->
+                        <div class="todo-head">
+                            <h3>Promotion Performance</h3>
+                        </div>
+
+                        <div class="todo">
+                            <!--Dashboard > Content > To-Do List > Item 1-->
+                            <div class="todo-item" style="width: 25%; text-align: left;">
+                                <h3>Sales</h3>
+                                <p><span style="font-weight: normal; color: black;">RM</span> <span class="todo-item-number" data-target="15156">15,156</span></p>
+                                <small>vs Previous 7 Days <b>4.00%</b></small>
+                            </div>
+                            <!--Dashboard > Content > To-Do List > Item 2-->
+                            <div class="todo-item" style="width: 25%; text-align: left;">
+                                <h3>Order(s)</h3>
+                                <p><span class="todo-item-number" data-target="25">25</span></p>
+                                <small>vs Previous 7 Days <b>3.24%</b></small>
+                            </div>
+                            <!--Dashboard > Content > To-Do List > Item 3-->
+                            <div class="todo-item" style="width: 25%; text-align: left;">
+                                <h3>Unit(s) Sold</h3>
+                                <p><span class="todo-item-number" data-target="29">29</span></p>
+                                <small>vs Previous 7 Days <b>5.87%</b></small>
+                            </div>
+                            <!--Dashboard > Content > To-Do List > Item 3-->
+                            <div class="todo-item" style="width: 25%; text-align: left;">
+                                <h3>Customer(s)</h3>
+                                <p><span class="todo-item-number" data-target="21">21</span></p>
+                                <small>vs Previous 7 Days <b>9.56%</b></small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Orders > Content > Filter & Add Order-->
+                    <div class="filter-add-order">
+                        <!--Orders > Content > Filter-->
+                        <div class="order-filter">
+                            <label>Search: </label>
+                            <input type="text" id="orderId" placeholder="Promotion Name, Product Name, Product ID" style="width: 300px;">
+
+                            <label>Promotion Start Time:</label>
+                            <input type="date" id="shippingChannel" style="width: 110px;">
+                            
+                            <button id="applyFilter" class="apply-button">Apply</button>
+                            <button id="resetFilter" class="reset-button">Reset</button>
+                        </div>
+                    </div>
+                           
+                    <!--Orders > Content > Orders-->
+                    <div class="orders-table all active">
+                        <div class="todo-container">
+                            <div class="todo-head">
+                                <h3>
+                                    Promotion List<br>
+                                    <small>2 Promotions</small>
+                                </h3>
+                            </div>
+                            <div class="todo">
+                                <table>
+                                    <tr>
+                                        <th style="width: 22%;">Name</th>
+                                        <th style="width: 18%;">Type</th>
+                                        <th style="width: 25%;">Products</th>
+                                        <th style="width: 20%;">Period</th>
+                                        <th style="width: 15%;">Action</th>
+                                    </tr>
+                                    <!--Promotion 1: Discount Promotion-->
+                                    <tr>
+                                        <td>
+                                            Thank You Support <small style="background-color: #CDFFFC; padding: 5px; border-radius: 5px; margin-left: 5px;">Active</small>
+                                        </td>
+                                        <td>
+                                            Add-on Deal
+                                        </td>
+                                        <td>
+                                            All Product(s)
+                                        </td>
+                                        <td>
+                                            <small>Start Time</small> <br>
+                                            01/05/2025 12:00 AM <br><br>
+                                            <small>End Time</small> <br>
+                                            31/05/2025 11:59 PM <br>
+                                        </td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Check Details</span></a>
+                                        </td>
+                                    </tr>
+                                    <!--Promotion 2-->
+                                    <tr>
+                                        <td>
+                                            5.5 Sales <small style="background-color: #ff577f; padding: 5px; border-radius: 5px; margin-left: 5px; color: white;">Expired</small>
+                                        </td>
+                                        <td>
+                                            Discount Promotion
+                                        </td>
+                                        <td>
+                                            <ul class="order-table-product-list">
+                                                <li>
+                                                    <img src="../images/product_image/Acer Nitro V 15.png" width="50px" height="50px" alt='Acer Nitro V 15 ANV15-51-54AA 15.6" FHD 144Hz Laptop ( i5-13420H, 16GB, 512GB SSD, RTX2050 4GB, W11, HS )' title='Acer Nitro V 15 ANV15-51-54AA 15.6" FHD 144Hz Laptop ( i5-13420H, 16GB, 512GB SSD, RTX2050 4GB, W11, HS )'>
+                                                    <img src="../images/product_image/HP Laptop 15.png" width="50px" height="50px" alt='HP Laptop 15 / AMD Ryzen™ 7-7730U / 12GB RAM+512GB SSD / 15.6 Inch / Office Preloaded / HP-15FC0380AU' title='HP Laptop 15 / AMD Ryzen™ 7-7730U / 12GB RAM+512GB SSD / 15.6 Inch / Office Preloaded / HP-15FC0380AU'>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <small>Start Time</small> <br>
+                                            05/05/2025 12:00 AM <br><br>
+                                            <small>End Time</small> <br>
+                                            05/05/2025 11:59 PM <br>
+                                        </td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Check Details</span></a>
+                                        </td>
+                                    </tr>
+                                    <!--Promotion 3-->
+                                    <tr>
+                                        <td>
+                                            Welcome May <small style="background-color: #ff577f; padding: 5px; border-radius: 5px; margin-left: 5px; color: white;">Expired</small>
+                                        </td>
+                                        <td>
+                                            Bundle Deal
+                                        </td>
+                                        <td>
+                                            All Product(s)
+                                        </td>
+                                        <td>
+                                            <small>Start Time</small> <br>
+                                            01/05/2025 12:00 AM <br><br>
+                                            <small>End Time</small> <br>
+                                            04/05/2025 11:59 PM <br>
+                                        </td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Check Details</span></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--Orders > Content > Orders > To Ship-->
+                    <div class="orders-table toShip">
+                        <div class="todo-container">
+                            <div class="todo-head">
+                                <h3>
+                                    Discount Promotions<br>
+                                    <small>1 Promotion</small>
+                                </h3>
+                            </div>
+                                <table class="order-table">
+                                    <tr>
+                                        <th style="width: 22%;">Name</th>
+                                        <th style="width: 18%;">Type</th>
+                                        <th style="width: 25%;">Products</th>
+                                        <th style="width: 20%;">Period</th>
+                                        <th style="width: 15%;">Action</th>
+                                    </tr>
+
+                                    <!--Promotion 1: Discount Promotion-->
+                                    <tr>
+                                        <td>
+                                            Thank You Support <small style="background-color: #CDFFFC; padding: 5px; border-radius: 5px; margin-left: 5px;">Active</small>
+                                        </td>
+                                        <td>
+                                            Add-on Deal
+                                        </td>
+                                        <td>
+                                            All Product(s)
+                                        </td>
+                                        <td>
+                                            <small>Start Time</small> <br>
+                                            01/05/2025 12:00 AM <br><br>
+                                            <small>End Time</small> <br>
+                                            31/05/2025 11:59 PM <br>
+                                        </td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Check Details</span></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                        </div>
+                    </div>
+                    
+                    <!--Orders > Content > Orders > Shipping-->
+                    <div class="orders-table shipping">
+                        
+                        <div class="todo-container">
+                            <div class="todo-head">
+                                <h3>
+                                    Bundel Deal<br>
+                                    <small>1 Promotion</small>
+                                </h3>
+                            </div>
+                                <table class="order-table">
+                                    <tr>
+                                        <th style="width: 22%;">Name</th>
+                                        <th style="width: 18%;">Type</th>
+                                        <th style="width: 25%;">Products</th>
+                                        <th style="width: 20%;">Period</th>
+                                        <th style="width: 15%;">Action</th>
+                                    </tr>
+                                    
+                                    <!--Promotion 2-->
+                                    <tr>
+                                        <td>
+                                            5.5 Sales <small style="background-color: #ff577f; padding: 5px; border-radius: 5px; margin-left: 5px; color: white;">Expired</small>
+                                        </td>
+                                        <td>
+                                            Discount Promotion
+                                        </td>
+                                        <td>
+                                            <ul class="order-table-product-list">
+                                                <li>
+                                                    <img src="../images/product_image/Acer Nitro V 15.png" width="50px" height="50px" alt='Acer Nitro V 15 ANV15-51-54AA 15.6" FHD 144Hz Laptop ( i5-13420H, 16GB, 512GB SSD, RTX2050 4GB, W11, HS )' title='Acer Nitro V 15 ANV15-51-54AA 15.6" FHD 144Hz Laptop ( i5-13420H, 16GB, 512GB SSD, RTX2050 4GB, W11, HS )'>
+                                                    <img src="../images/product_image/HP Laptop 15.png" width="50px" height="50px" alt='HP Laptop 15 / AMD Ryzen™ 7-7730U / 12GB RAM+512GB SSD / 15.6 Inch / Office Preloaded / HP-15FC0380AU' title='HP Laptop 15 / AMD Ryzen™ 7-7730U / 12GB RAM+512GB SSD / 15.6 Inch / Office Preloaded / HP-15FC0380AU'>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <small>Start Time</small> <br>
+                                            05/05/2025 12:00 AM <br><br>
+                                            <small>End Time</small> <br>
+                                            05/05/2025 11:59 PM <br>
+                                        </td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Check Details</span></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                    </div>
+
+                    <!--Orders > Content > Orders > Completed-->
+                    <div class="orders-table completed">
+                        
+                        <div class="todo-container">
+                            <div class="todo-head">
+                                <h3>
+                                    Add-on Deal<br>
+                                    <small>1 Promotion</small>
+                                </h3>
+                            </div>
+                                <table class="order-table">
+                                    <tr>
+                                        <th style="width: 22%;">Name</th>
+                                        <th style="width: 18%;">Type</th>
+                                        <th style="width: 25%;">Products</th>
+                                        <th style="width: 20%;">Period</th>
+                                        <th style="width: 15%;">Action</th>
+                                    </tr>
+                                    
+                                    <!--Promotion 3-->
+                                    <tr>
+                                        <td>
+                                            Welcome May <small style="background-color: #ff577f; padding: 5px; border-radius: 5px; margin-left: 5px; color: white;">Expired</small>
+                                        </td>
+                                        <td>
+                                            Bundle Deal
+                                        </td>
+                                        <td>
+                                            All Product(s)
+                                        </td>
+                                        <td>
+                                            <small>Start Time</small> <br>
+                                            01/05/2025 12:00 AM <br><br>
+                                            <small>End Time</small> <br>
+                                            04/05/2025 11:59 PM <br>
+                                        </td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Check Details</span></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!--Footer-->
+        <footer>
+            <p>&copy; 2025 TFH Sdn. Bhd.. All Rights Reserved.</p>
+        </footer>
+
+        <!--Chat-->
+        <a href="#" class="chat-button" target="_blank" title="Chat">
+            <img src="../images/chat.png" title="Chat" alt="Chat Icon" height="40px" width="40px">
+        </a>
+    </body>
+</html>

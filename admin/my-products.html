@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Products - TFH</title>
+
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js"></script>
+        <script>
+        //Tab
+        function changeTab(event, tabName) {
+            const allTables = document.querySelectorAll('.orders-table');
+            allTables.forEach(table => {
+                table.classList.remove('active');
+            });
+
+            const allTabs = document.querySelectorAll('.tab');
+            allTabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.querySelector(`.${tabName}`).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            //Reset Filter
+            document.getElementById('resetFilter').addEventListener('click', function() {
+                document.getElementById('searchProduct').value = '';
+                document.getElementById('productCategory').value = 'all';
+            });
+        });
+        </script>
+    </head>
+    <body>
+        <header>
+            <!--Header Bar-->
+            <div class="head-bar">
+                <a href="dashboard.html">
+                    <img src="../images/logo.png" title="Logo" alt="Logo" width="30px" height="30px">
+                </a>
+
+                <div class="head-content-box">
+                    <span><a href="dashboard.html">&nbsp;&nbsp;Home</a>&nbsp;&nbsp;>&nbsp;&nbsp;</span><a href="my-products.html"><b>My Product</b></a>
+                </div>
+
+                <!--Header Bar > Action-->
+                <div class="head-action">
+                    <!--Notification Action-->
+                    <div class="head-notify-action">
+                        <button onclick="toggleNotification()">
+                            <img src="../images/notification.png" title="Notification" alt="Notification Icon" width="16.5px" height="16.5px">
+                        </button>
+
+                        <!--Header Bar > Action > Notification Bar-->
+                        <div class="head-notify-bar">
+                            <!--Header Bar > Action > Notification Bar > Header-->
+                            <div class="head-notify-bar-head">
+                                <h3>Notification</h3>
+                                <div class="head-notify-bar-head-action">
+                                    <button class="head-notify-bar-head-button" onclick="refreshNotifications()">
+                                        <img src="../images/refresh.png" title="Refresh" alt="Refresh Icon" width="16px" height="16px">
+                                    </button>
+                                    <div class="head-notify-bar-head-splitter"></div>
+                                    <button class="head-notify-bar-head-button" onclick="toggleNotification()">
+                                        <img src="../images/close.png" title="Close" alt="Close Icon" width="16px" height="16px">
+                                    </button>
+                                </div>
+                            </div>
+                            <!--Header Bar > Action > Notification Bar > Item 1-->
+                            <div class="head-notify-bar-item">
+                                    <span class="head-notify-bar-item-title">New Login Alert</span>
+                                    <span class="head-notify-bar-item-time">06/05/2025 11:22</span>
+                                    <p>A new login has been detected on your account at Petaling Jaya on desktop at 06-05-2025 11:22. If this was not done by you, please contact IT department immediately.</p>
+                            </div>
+                            <!--Header Bar > Action > Notification Bar > Item 2-->
+                            <div class="head-notify-bar-item">
+                                    <span class="head-notify-bar-item-title">New Login Alert</span>
+                                    <span class="head-notify-bar-item-time">05/05/2025 20:22</span>
+                                    <p>A new login has been detected on your account at Petaling Jaya on desktop at 05-05-2025 20:22. If this was not done by you, please contact IT department immediately.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Header Bar > Action > Notification Bar > Splitter-->
+                    <div class="head-action-split"></div>
+
+                    <!--Header Bar > Action > Notification Bar > Account Information-->
+                    <div class="head-action-acc-info">
+                        <img class="head-acc-avatar" src="../images/avatar.png" title="Avatar" alt="Avatar" height="32px" width="32px">
+                        <span class="head-acc-name">TEO YU XUAN</span>
+                        <button class="head-acc-action" onclick="toggleHeadAccDrop()">
+                            <img src="../images/arrow-down.png" title="Dropdown" alt="Dropdown Arrow" width="16px" height="16px">
+                        </button>
+
+                        <!--Header Bar > Action > Notification Bar > Account Information > Dropdown-->
+                        <div class="head-acc-drop" id="headAccDrop">
+                            <div>
+                                <ul>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/store-information.png" title="Store Information" alt="Store Information">
+                                        <span>Store Information</span>
+                                    </li>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/store-setting.png" title="Store Setting" alt="Store Setting">
+                                        <span>Store Setting</span>
+                                    </li>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/logout.png" title="Logout" alt="Logout">
+                                        <span>Logout</span>
+                                    </li>
+                                </ul>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <nav>
+            <!--Side Menu-->
+            <div class="side-menu">
+                <!--Side Menu > Item 1-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title">
+                        <a href="dashboard.html">Dashboard</a>
+                    </div>
+                </div>
+                <!--Side Menu > Item 2-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('side-menu-order')">
+                        <span>Order</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="side-menu-order" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="my-orders.html">My Orders</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="add-new-order.html">Add New Order</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 3-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('product-menu')">
+                        <span>Product</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="product-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="my-products.html">My Products</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="add-new-product.html">Add New Product</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 4-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('marketing-menu')">
+                        <span>Marketing</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="marketing-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="discount.html">Discount</a>
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="vouchers.html">Vouchers</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 5-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('finance-menu')">
+                        <span>Finance</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="finance-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="payment.html">Payment</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 6-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('store-menu')">
+                        <span>Store</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="store-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="store-information.html">Store Information</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="store-setting.html">Store Setting</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <!--Orders-->
+            <div class="dashboard-container">
+                <!--Orders > Content-->
+                <div class="dashboard">
+                    <!--Orders > Content > Tabs-->
+                    <div class="tabs">
+                        <button class="tab active" onclick="changeTab(event, 'all')">All</button>
+                        <button class="tab" onclick="changeTab(event, 'live')">Live</button>
+                        <button class="tab" onclick="changeTab(event, 'unpublished')">Unpublished</button>
+                    </div>
+
+                    <!--Orders > Content > Filter & Add Order-->
+                    <div class="filter-add-order">
+                        <!--Orders > Content > Filter-->
+                        <div class="order-filter">
+                            <label>Search Products:</label>
+                            <input type="text" list="products" id="searchProduct" placeholder="Search Product Name, Parent SKU, SKU, Item ID" style="width: 350px;">
+
+                            <datalist id="products">
+                                <option value='HP OmniBook X Laptop 14-fe1013QU SnapDragon X Plus 16GB RAM+512GB SSD 14" diagonal 2.2K touch display OPI Windows11'>
+                                <option value="HP Laptop 15 / AMD Ryzen™ 7-7730U / 12GB RAM+512GB SSD / 15.6 Inch / Office Preloaded / HP-15FC0380AU">
+                                <option value='Acer Nitro V 15 ANV15-51-54AA 15.6" FHD 144Hz Laptop ( i5-13420H, 16GB, 512GB SSD, RTX2050 4GB, W11, HS )'>
+                                <option value="Microsoft Surface Laptop – Copilot+ PC – Snapdragon® X Elite – 16GB Memory – (Latest Model, 7th Edition)">
+                                <option value="Microsoft Surface Laptop – Copilot+ PC – 13.8” touchscreen – Snapdragon® X Plus – 16GB Memory – (Latest Model, 7th Edition)">
+                                <option value="Canon PIXMA MG2570S All-In-One Printer">
+                                <option value="Apple MacBook Air (M4 chip, 2025)">
+                            </datalist>
+
+                            <label>Product Category</label>
+                            <select id="productCategory" style="width: 150px;">
+                                <option value="all">All Products</option>
+                                <option value="laptop">Laptop</option>
+                                <option value="accessories">Accessories</option>
+                            </select>
+                            
+                            <button id="applyFilter" class="apply-button">Apply</button>
+                            <button id="resetFilter" class="reset-button">Reset</button>
+                        </div>
+                        
+                        <!--Orders > Content > Add New Order-->
+                        <button class="add-order-button">
+                            <a href="add-new-product.html">Add New Product</a>
+                        </button>
+                    </div>
+                           
+                    <!--Orders > Content > Orders-->
+                    <div class="orders-table all active">
+                        <div class="todo-container">
+                            <div class="todo-head">
+                                <h3>
+                                    All Products<br>
+                                    <small>15 Products</small>
+                                </h3>
+                            </div>
+                            <div class="todo">
+                                <table class="my-products">
+                                    <tr>
+                                        <th class="width40" colspan="2">Product(s)</th>
+                                        <th class="width15">Sales</th>
+                                        <th class="width15">Price (RM)</th>
+                                        <th class="width15">Stock</th>
+                                        <th class="width15">Action</th>
+                                    </tr>
+                                    <!--Prodcut 1-->
+                                    <tr>
+                                        <td style="width: 10%;">
+                                            <img src="../images/product_image/Apple MacBook Air.png" width="100%">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            Apple MacBook Air (M4 chip, 2025)<br>
+                                            <small>
+                                                Parent SKU: - <br>
+                                                Item ID: 1569
+                                            </small>
+                                        </td>
+                                        <td>
+                                            118
+                                        </td>
+                                        <td>
+                                            4,499.00 - 7,199.00
+                                        </td>
+                                        <td>14</td>
+                                        <td rowspan="4">
+                                            <a href="#"><span class="order-table-action-text">Edit</span></a><br><br>
+                                            <a href="#"><span class="order-table-action-text">Delete</span></a>
+                                        </td>
+                                    </tr>
+                                    <!--Product 1-Variation 1-->
+                                    <tr style="background-color: #cdfffc;">
+                                        <td style="width: 10%; background-color: white;">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            Sky Blue, 16GB + 256GB, 13-inch<br>
+                                            <small>
+                                                SKU: -
+                                            </small>
+                                        </td>
+                                        <td>
+                                            54
+                                        </td>
+                                        <td>
+                                            4,499.00
+                                        </td>
+                                        <td>3</td>
+                                    </tr>
+                                    <!--Product 1-Variation 2-->
+                                    <tr style="background-color: #cdfffc;">
+                                        <td style="width: 10%; background-color: white;">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            Starlight, 16GB + 512GB, 15-inch<br>
+                                            <small>
+                                                SKU: -
+                                            </small>
+                                        </td>
+                                        <td>
+                                            21
+                                        </td>
+                                        <td>
+                                            6,349.00
+                                        </td>
+                                        <td>7</td>
+                                    </tr>
+                                    <!--Product 1-Variation 3-->
+                                    <tr style="background-color: #cdfffc;">
+                                        <td style="width: 10%; background-color: white;">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            Midnight, 24GB + 512GB, 15-inch<br>
+                                            <small>
+                                                SKU: -
+                                            </small>
+                                        </td>
+                                        <td>
+                                            43
+                                        </td>
+                                        <td>
+                                            7,199.00
+                                        </td>
+                                        <td>4</td>
+                                    </tr>
+                                    <!--Prodcut 2-->
+                                    <tr>
+                                        <td style="width: 10%;">
+                                            <img src="../images/product_image/HP OmniBook X Laptop 14.png" width="100%">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            HP OmniBook X Laptop 14-fe1013QU SnapDragon X Plus 16GB RAM+512GB SSD 14" diagonal 2.2K touch display OPI Windows11<br>
+                                            <small>
+                                                Parent SKU: - <br>
+                                                Item ID: 1568
+                                            </small>
+                                        </td>
+                                        <td>
+                                            104
+                                        </td>
+                                        <td>
+                                            4,399.00
+                                        </td>
+                                        <td>59</td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Edit</span></a><br><br>
+                                            <a href="#"><span class="order-table-action-text">Delete</span></a>
+                                        </td>
+                                    </tr>
+                                    <!--Prodcut 2-->
+                                    <tr>
+                                        <td style="width: 10%;">
+                                            <img src="../images/product_image/13-inch MacBook Air.png" width="100%">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            13-inch MacBook Air with M2 Chip<br>
+                                            <small>
+                                                Parent SKU: - <br>
+                                                Item ID: 1567
+                                            </small>
+                                        </td>
+                                        <td>
+                                            113
+                                        </td>
+                                        <td>3,999.00</td>
+                                        <td>5</td>
+                                        <td rowspan="2">
+                                            <a href="#"><span class="order-table-action-text">Edit</span></a><br><br>
+                                            <a href="#"><span class="order-table-action-text">Delete</span></a>
+                                        </td>
+                                    </tr>
+                                    <!--Product 2-Variation 1-->
+                                    <tr style="background-color: #cdfffc;">
+                                        <td style="width: 10%; background-color: white;">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            Silver, 24GB + 512GB, 15-inch<br>
+                                            <small>
+                                                SKU: -
+                                            </small>
+                                        </td>
+                                        <td>113</td>
+                                        <td>
+                                            3,999.00
+                                        </td>
+                                        <td>5</td>
+                                    </tr>
+                                    <!--Prodcut 3-->
+                                    <tr>
+                                        <td style="width: 10%;">
+                                            <img src="../images/product_image/Acer Nitro V 15.png" width="100%">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            Acer Nitro V 15 ANV15-51-54AA 15.6" FHD 144Hz Laptop ( i5-13420H, 16GB, 512GB SSD, RTX2050 4GB, W11, HS )<br>
+                                            <small>
+                                                Parent SKU: - <br>
+                                                Item ID: 1566
+                                            </small>
+                                        </td>
+                                        <td>
+                                            64
+                                        </td>
+                                        <td>3,199.00</td>
+                                        <td>16</td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Edit</span></a><br><br>
+                                            <a href="#"><span class="order-table-action-text">Delete</span></a>
+                                        </td>
+                                    </tr>
+                                    <!--Prodcut 4-->
+                                    <tr>
+                                        <td style="width: 10%;">
+                                            <img src="../images/product_image/Canon PIXMA MG2570S.png" width="100%">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            Canon PIXMA MG2570S All-In-One Printer<br>
+                                            <small>
+                                                Parent SKU: - <br>
+                                                Item ID: 1565
+                                            </small>
+                                        </td>
+                                        <td>
+                                            269
+                                        </td>
+                                        <td>209.00</td>
+                                        <td class="out-of-stock-text">Out of Stock</td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Edit</span></a><br><br>
+                                            <a href="#"><span class="order-table-action-text">Delete</span></a>
+                                        </td>
+                                    </tr>
+                                    <!--Prodcut 5-->
+                                    <tr>
+                                        <td style="width: 10%;">
+                                            <img src="../images/product_image/HP Laptop 15.png" width="100%">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            HP Laptop 15 / AMD Ryzen™ 7-7730U / 12GB RAM+512GB SSD / 15.6 Inch / Office Preloaded / HP-15FC0380AU<br>
+                                            <small>
+                                                Parent SKU: - <br>
+                                                Item ID: 1564
+                                            </small>
+                                        </td>
+                                        <td>
+                                            76
+                                        </td>
+                                        <td>2,949.00</td>
+                                        <td>26</td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Edit</span></a><br><br>
+                                            <a href="#"><span class="order-table-action-text">Delete</span></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--Orders > Content > Orders > To Ship-->
+                    <div class="orders-table live">
+                        <div class="todo-container">
+                            <div class="todo-head">
+                                <h3>
+                                    Live<br>
+                                    <small>5 Products</small>
+                                </h3>
+                            </div>
+                            
+                            <table class="my-products">
+                                    <tr>
+                                        <th class="width40" colspan="2">Product(s)</th>
+                                        <th class="width15">Sales</th>
+                                        <th class="width15">Price (RM)</th>
+                                        <th class="width15">Stock</th>
+                                        <th class="width15">Action</th>
+                                    </tr>
+                                    <!--Prodcut 1-->
+                                    <tr>
+                                        <td style="width: 10%;">
+                                            <img src="../images/product_image/Apple MacBook Air.png" width="100%">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            Apple MacBook Air (M4 chip, 2025)<br>
+                                            <small>
+                                                Parent SKU: - <br>
+                                                Item ID: 1569
+                                            </small>
+                                        </td>
+                                        <td>
+                                            118
+                                        </td>
+                                        <td>
+                                            4,499.00 - 7,199.00
+                                        </td>
+                                        <td>14</td>
+                                        <td rowspan="4">
+                                            <a href="#"><span class="order-table-action-text">Edit</span></a><br><br>
+                                            <a href="#"><span class="order-table-action-text">Delete</span></a>
+                                        </td>
+                                    </tr>
+                                    <!--Product 1-Variation 1-->
+                                    <tr style="background-color: #cdfffc;">
+                                        <td style="width: 10%; background-color: white;">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            Sky Blue, 16GB + 256GB, 13-inch<br>
+                                            <small>
+                                                SKU: -
+                                            </small>
+                                        </td>
+                                        <td>
+                                            54
+                                        </td>
+                                        <td>
+                                            4,499.00
+                                        </td>
+                                        <td>3</td>
+                                    </tr>
+                                    <!--Product 1-Variation 2-->
+                                    <tr style="background-color: #cdfffc;">
+                                        <td style="width: 10%; background-color: white;">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            Starlight, 16GB + 512GB, 15-inch<br>
+                                            <small>
+                                                SKU: -
+                                            </small>
+                                        </td>
+                                        <td>
+                                            21
+                                        </td>
+                                        <td>
+                                            6,349.00
+                                        </td>
+                                        <td>7</td>
+                                    </tr>
+                                    <!--Product 1-Variation 3-->
+                                    <tr style="background-color: #cdfffc;">
+                                        <td style="width: 10%; background-color: white;">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            Midnight, 24GB + 512GB, 15-inch<br>
+                                            <small>
+                                                SKU: -
+                                            </small>
+                                        </td>
+                                        <td>
+                                            43
+                                        </td>
+                                        <td>
+                                            7,199.00
+                                        </td>
+                                        <td>4</td>
+                                    </tr>
+                                    <!--Prodcut 2-->
+                                    <tr>
+                                        <td style="width: 10%;">
+                                            <img src="../images/product_image/HP OmniBook X Laptop 14.png" width="100%">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            HP OmniBook X Laptop 14-fe1013QU SnapDragon X Plus 16GB RAM+512GB SSD 14" diagonal 2.2K touch display OPI Windows11<br>
+                                            <small>
+                                                Parent SKU: - <br>
+                                                Item ID: 1568
+                                            </small>
+                                        </td>
+                                        <td>
+                                            104
+                                        </td>
+                                        <td>
+                                            4,399.00
+                                        </td>
+                                        <td>59</td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Edit</span></a><br><br>
+                                            <a href="#"><span class="order-table-action-text">Delete</span></a>
+                                        </td>
+                                    </tr>
+                                    <!--Prodcut 2-->
+                                    <tr>
+                                        <td style="width: 10%;">
+                                            <img src="../images/product_image/13-inch MacBook Air.png" width="100%">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            13-inch MacBook Air with M2 Chip<br>
+                                            <small>
+                                                Parent SKU: - <br>
+                                                Item ID: 1567
+                                            </small>
+                                        </td>
+                                        <td>
+                                            113
+                                        </td>
+                                        <td>3,999.00</td>
+                                        <td>5</td>
+                                        <td rowspan="2">
+                                            <a href="#"><span class="order-table-action-text">Edit</span></a><br><br>
+                                            <a href="#"><span class="order-table-action-text">Delete</span></a>
+                                        </td>
+                                    </tr>
+                                    <!--Product 2-Variation 1-->
+                                    <tr style="background-color: #cdfffc;">
+                                        <td style="width: 10%; background-color: white;">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            Silver, 24GB + 512GB, 15-inch<br>
+                                            <small>
+                                                SKU: -
+                                            </small>
+                                        </td>
+                                        <td>113</td>
+                                        <td>
+                                            3,999.00
+                                        </td>
+                                        <td>5</td>
+                                    </tr>
+                                    <!--Prodcut 3-->
+                                    <tr>
+                                        <td style="width: 10%;">
+                                            <img src="../images/product_image/Acer Nitro V 15.png" width="100%">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            Acer Nitro V 15 ANV15-51-54AA 15.6" FHD 144Hz Laptop ( i5-13420H, 16GB, 512GB SSD, RTX2050 4GB, W11, HS )<br>
+                                            <small>
+                                                Parent SKU: - <br>
+                                                Item ID: 1566
+                                            </small>
+                                        </td>
+                                        <td>
+                                            64
+                                        </td>
+                                        <td>3,199.00</td>
+                                        <td>16</td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Edit</span></a><br><br>
+                                            <a href="#"><span class="order-table-action-text">Delete</span></a>
+                                        </td>
+                                    </tr>
+                                    <!--Prodcut 5-->
+                                    <tr>
+                                        <td style="width: 10%;">
+                                            <img src="../images/product_image/HP Laptop 15.png" width="100%">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            HP Laptop 15 / AMD Ryzen™ 7-7730U / 12GB RAM+512GB SSD / 15.6 Inch / Office Preloaded / HP-15FC0380AU<br>
+                                            <small>
+                                                Parent SKU: - <br>
+                                                Item ID: 1564
+                                            </small>
+                                        </td>
+                                        <td>
+                                            76
+                                        </td>
+                                        <td>2,949.00</td>
+                                        <td>26</td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Edit</span></a><br><br>
+                                            <a href="#"><span class="order-table-action-text">Delete</span></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                        </div>
+                    </div>
+                    
+                    <!--Orders > Content > Orders > Shipping-->
+                    <div class="orders-table unpublished">
+                        
+                        <div class="todo-container">
+                            <div class="todo-head">
+                                <h3>
+                                    Unpublished<br>
+                                    <small>1 Product</small>
+                                </h3>
+                            </div>
+                                <table class="my-products">
+                                    <tr>
+                                        <th class="width40" colspan="2">Product(s)</th>
+                                        <th class="width15">Sales</th>
+                                        <th class="width15">Price (RM)</th>
+                                        <th class="width15">Stock</th>
+                                        <th class="width15">Action</th>
+                                    </tr>
+                                    <!--Prodcut 4-->
+                                    <tr>
+                                        <td style="width: 10%;">
+                                            <img src="../images/product_image/Canon PIXMA MG2570S.png" width="100%">
+                                        </td>
+                                        <td style="width: 30%;">
+                                            Canon PIXMA MG2570S All-In-One Printer<br>
+                                            <small>
+                                                Parent SKU: - <br>
+                                                Item ID: 1565
+                                            </small>
+                                        </td>
+                                        <td>
+                                            269
+                                        </td>
+                                        <td>209.00</td>
+                                        <td class="out-of-stock-text">Out of Stock</td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Edit</span></a><br><br>
+                                            <a href="#"><span class="order-table-action-text">Delete</span></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                    </div>
+
+                    <!--Orders > Content > Orders > Completed-->
+                    <div class="orders-table completed">
+                        
+                        <div class="todo-container">
+                            <div class="todo-head">
+                                <h3>
+                                    Completed<br>
+                                    <small>1 Order</small>
+                                </h3>
+                            </div>
+                                <table class="order-table">
+                                    <tr>
+                                        <th class="width40">Product(s)</th>
+                                        <th class="width15">Order Total (RM)</th>
+                                        <th class="width15">Status</th>
+                                        <th class="width15">Shipping Channel</th>
+                                        <th class="width15">Action</th>
+                                    </tr>
+                                    <!--Order 2: Completed-->
+                                    <tr class="no-border">
+                                        <td colspan="3">
+                                            <a href="#">
+                                                <b>HANNAH FARZANA BINTI KAHIROL</b>
+                                            </a>
+                                            <small>1/5/2025 10:05 AM</small>
+                                        </td>
+                                        <td>Order ID:</td>
+                                        <td>
+                                            <b>
+                                                <a href="order-details-7487.html" target="_blank">#7487</a>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ul class="order-table-product-list">
+                                                <li>
+                                                    Acer Nitro V 15 ANV15-51-54AA 15.6" FHD 144Hz Laptop ( i5-13420H, 16GB, 512GB SSD, RTX2050 4GB, W11, HS )
+                                                    <ul>
+                                                        <li>Quantity(s): 1</li>
+                                                    </ul>
+                                                </li><br>
+                                                <li>
+                                                    Acer Aspire 14 AI CU5-226V/16GB RAM+512GB SSD/14''/Office Preloaded
+                                                    <ul>
+                                                        <li>Quantity(s): 1</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            7,198.00
+                                            <br>
+                                            <small>Credit / Debit Card</small>
+                                        </td>
+                                        <td>
+                                            <b>Completed</b>
+                                        </td>
+                                        <td>J&T Express</td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Print Invoice</span></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                        </div>
+                    </div>
+                     
+                    <!--Return/Refund/Cancel-->
+                    <div class="orders-table return-refund-cancel">
+                        
+                        <div class="todo-container">
+                            <div class="todo-head">
+                                <h3>
+                                    Return/Refund/Cancel<br>
+                                    <small>2 Orders</small>
+                                </h3>
+                            </div>
+                                <table class="order-table">
+                                    <tr>
+                                        <th class="width35">Product(s)</th>
+                                        <th class="width13">Amount (RM)</th>
+                                        <th class="width13">Request Reason</th>
+                                        <th class="width13">Request Solution</th>
+                                        <th class="width13">Request Status</th>
+                                        <th class="width13">Action</th>
+                                    </tr>
+                                    <!--Order 2: Refunded-->
+                                    <tr class="no-border">
+                                        <td colspan="4">
+                                            <a href="#">
+                                                <b>TOH YUAN KAI</b>
+                                            </a>
+                                            <small>1/5/2025 2:16 PM</small>
+                                        </td>
+                                        <td>Order ID:</td>
+                                        <td>
+                                            <b>
+                                                <a href="#">#7490</a>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ul class="order-table-product-list">
+                                                <li>
+                                                    Canon PIXMA MG2570S All-In-One Printer
+                                                    <ul>
+                                                        <li>Quantity(s): 1</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <small>Order Total</small>
+                                            <br>
+                                            209.00
+                                            <br><br>
+                                            <small>Compensation Amount</small>
+                                            <br>
+                                            -
+                                        </td>
+                                        <td>
+                                            Need to change delivery address
+                                        </td>
+                                        <td>Refund Only</td>
+                                        <td>
+                                            Request Refunded
+                                            <small>Cancellation request is approved and refunded</small>
+                                        </td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Check Details</span></a>
+                                        </td>
+                                    </tr>
+                                    <!--Order 3: Cancelled-->
+                                    <tr class="no-border">
+                                        <td colspan="4">
+                                            <a href="#">
+                                                <b>SIM ZHI YANG</b>
+                                            </a>
+                                            <small>25/4/2025 7:45 PM</small>
+                                        </td>
+                                        <td>Order ID:</td>
+                                        <td>
+                                            <b>#7490</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ul class="order-table-product-list">
+                                                <li>
+                                                    Apple MacBook Air (M4 chip, 2025)
+                                                    <ul>
+                                                        <li>Color Family: Sky Blue</li>
+                                                        <li>Capacity Spec: 24GB + 512GB</li>
+                                                        <li>Model Size: 15-inch</li>
+                                                        <li>Quantity(s): 1</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <small>Order Total</small>
+                                            <br>
+                                            7,198.00
+                                            <br><br>
+                                            <small>Compensation Amount</small>
+                                            <br>
+                                            -
+                                        </td>
+                                        <td>
+                                            Payment was not made on time
+                                        </td>
+                                        <td>Refund Only</td>
+                                        <td>
+                                            Request Refunded
+                                            <small>Cancellation request is approved and refunded</small>
+                                        </td>
+                                        <td>
+                                            <a href="#"><span class="order-table-action-text">Check Details</span></a>
+                                        </td>
+                                    </tr>
+                                    </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!--Footer-->
+        <footer>
+            <p>&copy; 2025 TFH Sdn. Bhd.. All Rights Reserved.</p>
+        </footer>
+
+        <!--Chat-->
+        <a href="#" class="chat-button" target="_blank" title="Chat">
+            <img src="../images/chat.png" title="Chat" alt="Chat Icon" height="40px" width="40px">
+        </a>
+    </body>
+</html>

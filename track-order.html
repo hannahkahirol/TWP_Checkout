@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Order</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="header-footer.css">
+    <script src="header-footer.js"></script>
+<style>
+body 
+{
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+        
+.container 
+{
+    max-width: 1400px;
+    margin: 20px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-top: 100px;
+}
+        
+h1
+{
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+        
+.form-group 
+{
+    margin-bottom: 20px;
+}
+        
+label 
+{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+        
+input[type="email"],input[type="text"] 
+{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+        
+button 
+{
+    background-color: orange;
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+button:hover 
+{
+    background-color:rgb(226, 194, 136) ;
+}
+
+.info 
+{
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ffc764;
+    border-left: 6px solid #ff884b;
+}
+
+.order-header 
+{
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.order-details
+{
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    padding:30px;
+    display: none;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.order-section 
+{
+    flex: 1;
+    padding: 20px 0;
+    min-width: 250px;
+    margin: 20px 0 30px 20px;
+}
+
+.order-section h3 
+{
+    text-align: center;
+    background-color: #ffc764;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    color: black;
+}
+
+.order-section p
+{
+    text-align: left;
+}
+.status 
+{
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    display: inline-block;
+}
+        
+.status.shipped 
+{
+    background-color: #d4edda;
+    color: #155724;
+}
+        
+.timeline 
+{
+    position: relative;
+    padding-left: 30px;
+    display: none;
+}
+        
+.timeline:before 
+{
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #ddd;
+}
+        
+.timeline-step 
+{
+    position: relative;
+    margin-bottom: 20px;
+}
+        
+.timeline-step:before 
+{
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #28a745;
+    border: 3px solid #fff;
+}
+        
+.timeline-step.completed:before 
+{
+    background: #28a745;
+}
+           
+.timeline-step:before 
+{
+    background: #6c757d;
+}
+        
+.product-list 
+{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+        
+.product-list th, .product-list td 
+{
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+        
+.product-list th 
+{
+    background-color: #fa7484;
+}
+        
+#trackingForm
+{
+    display: block;
+}
+        
+
+.proofDelivery a
+{
+    color: #007bff;
+    text-decoration: none;
+}
+
+.proofDelivery a:hover
+{
+    color :red;
+    text-decoration: underline;
+}
+
+</style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/header-logo.png" alt="TechHub" class="logo-img">
+            </a>
+            
+            <div class="nav-links">
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="track-order.html" class="nav-link">Track Order</a>
+                <a href="contact-us.html" class="nav-link">Contact Us</a>
+                <a href="about-us.html" class="nav-link">About Us</a>
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Search products...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <div class="icons">
+                <a href="my-account.html" class="icon">
+                    <i class="fas fa-user"></i>
+                </a>
+                <a href="cart.html" class="icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Track Your Order</h1>
+        
+        <form id="trackingForm">
+            <div class="form-group">
+                <label for="email">Email Address <span style="color:red">*</style></label>
+                <input type="email" id="email" name="email" required placeholder="Enter the email used for your order">
+            </div>
+            
+            <div class="form-group">
+                <label for="orderId">Order ID <span style="color:red">*</style></style></label>
+                <input type="text" id="orderId" name="orderId" required placeholder="Enter your order number">
+            </div>
+            
+            <button type="submit">Track Order</button>
+        </form>
+        
+        <div class="info">
+            <p><strong>Where can I find my Order ID?</strong></p>
+            <p>Your Order ID was sent to you in your order confirmation email. It typically looks like "ORD-123456".</p>
+        </div>
+        
+        <div class="order-header" id="orderHeader">
+            <h2>#7487</h2>
+            <p>Placed on May 1, 2025</p>
+            <p>Status: <span class="status shipped">Shipped</span></p>
+        </div>
+        
+        <div class="order-details" id="orderDetails">
+            <div class="order-section">
+                <h3>Shipping Information</h3>
+                <p><strong>HANNAH FARZANA BINTI KAHIROL</strong><br>
+                Ixora Apartment,<br>
+                Bukit Beruang,<br>
+                75450,<br>
+                Melaka,<br>
+                Phone: +60 19-576 1525</p>
+            </div>
+            
+            <div class="order-section">
+                <h3>Order Summary</h3>
+                <table class="product-list">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Acer Nitro V 15 ANV15-51-54AA 15.6" FHD 144Hz Laptop ( i5-13420H, 16GB, 512GB SSD, RTX2050 4GB, W11, HS )</td>
+                            <td>RM 3,199.00	</td>
+                            <td>1</td>
+                            <td>RM 3,199.00	</td>
+                        </tr>
+                        <tr>
+                            <td>Acer Aspire 14 AI CU5-226V/16GB RAM+512GB SSD/14''/Office Preloaded</td>
+                            <td>RM 3,999.00	</td>
+                            <td>1</td>
+                            <td>RM 3,999.00	</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: right;">Subtotal:</td>
+                            <td>RM 7,198.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: right;">Shipping Subtotal:</td>
+                            <td>RM 0.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: right;">Fees & Charges:</td>
+                            <td>RM0.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: right;">Payment Method:</td>
+                            <td>Online Banking</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: right; font-weight: bold;">Total:</td>
+                            <td style="font-weight: bold;">RM 7,198.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="order-section">
+            <div class="timeline" id="timeline">
+                <div class="timeline-step completed">
+                    <span style="color:orange;font-weight:bold;">Parcel has been delivered.</span><a href="#" class="proofDelivery">View Proof of Delivery</a>
+                    <p>01/5/2025 12:15 PM</p>
+                </div>
+                <div class="timeline-step">
+                    Parcel is out for delivery!
+                    <p>02/5/2025 02:31 PM</p>
+                </div>
+                <div class="timeline-step">
+                    Parcel has arrived at the delivery hub: Jasin Hub.
+                    <p>02/5/2025 01:55 PM</p>
+                </div>
+                <div class="timeline-step">
+                    Parcel has departed from sorting facility.
+                    <p>02/5/2025 09:05 AM</p>
+                </div>
+                <div class="timeline-step">
+                    Parcel has arrived at sorting facility: MKZ sorting center.
+                    <p>02/5/2025 08:23 AM</p>
+                </div>
+                <div class="timeline-step">
+                    Parcel has departed from sorting facility.
+                    <p>02/5/2025 04:50 AM</p>
+                </div>
+                <div class="timeline-step">
+                    Parcel has arrived at sorting facility: MP3 sorting center.
+                    <p>01/5/2025 07:11 PM</p>
+                </div>
+                <div class="timeline-step">
+                    Parcel has been picked up by J&T Express.
+                    <p>01/5/2025 04:40 PM</p>
+                </div>
+                <div class="timeline-step">
+                    Courier assigned for order, wait for pick up.
+                    <p>01/5/2025 01:37 PM</p>
+                </div>
+                <div class="timeline-step">
+                    Seller is preparing to ship your parcel.
+                    <p>01/5/2025 12:15 PM</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p class="copyright">&copy; 2025 TFH Sdn. Bhd.. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('trackingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show demo notice
+            document.getElementById('orderHeader').style.display = 'block';
+            
+            // Hide the form
+            this.style.display = 'none';
+            
+            // Hide the info box
+            document.querySelector('.info').style.display = 'none';
+            
+            // Show all the order details
+            document.getElementById('orderHeader').style.display = 'block';
+            document.getElementById('orderDetails').style.display = 'flex';
+            document.getElementById('timeline').style.display = 'block';
+            
+            // Scroll to the order details
+            document.getElementById('orderHeader').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

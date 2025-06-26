@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFH Homepage</title>
+    <link rel="stylesheet" href="homepagestyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="header-footer.css">
+    <script src="header-footer.js"></script>
+    <style>
+        
+        .products-card-box .product-image img 
+        {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .product-card, .product-card-like 
+        {
+        transition: transform 0.3s, box-shadow 0.3s;
+        border-radius: 8px;
+        padding: 12px;
+        background: white;
+        }
+
+        .product-card:hover, .product-card-like:hover 
+        {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .product-name 
+        {
+            height: auto;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            margin: 10px 0;
+        }
+
+
+
+        .product-price 
+        {
+        font-weight: bold;
+        color: #e53935;
+        font-size: 16px;
+        }
+
+        .product-sold 
+        {
+        color: #757575;
+        font-size: 12px;
+        }
+
+        .section-header 
+        {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 10px;
+        }
+
+        .section-title 
+        {
+        font-size: 20px;
+        font-weight: bold;
+        position: relative;
+        padding-left: 15px;
+        }
+
+        .section-title:before 
+        {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 5px;
+        background-color: #e53935;
+        border-radius: 2px;
+        }
+
+        .see-all 
+        {
+        color: #1976D2;
+        cursor: pointer;
+        font-size: 14px;
+        }
+
+        .see-all:hover 
+        {
+        text-decoration: underline;
+        }
+
+
+        .section 
+        {
+        margin-bottom: 40px;
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        }
+
+        
+
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/header-logo.png" alt="TechHub" class="logo-img">
+            </a>
+            
+            <div class="nav-links">
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="track-order.html" class="nav-link">Track Order</a>
+                <a href="contact-us.html" class="nav-link">Contact Us</a>
+                <a href="about-us.html" class="nav-link">About Us</a>
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Search products...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <div class="icons">
+                <a href="my-account.html" class="icon">
+                    <i class="fas fa-user"></i>
+                </a>
+                <a href="cart.html" class="icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="home-container" style="margin-top: 50px;">
+    <div class="banner">
+        <div class="main-banner">
+            <h2><img src="images/Main Banner.png"></img></h2>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-header">
+            <div class="section-title">FLASH SALES</div>
+            <div class="see-all">See All</div>
+        </div>
+        <div class="products">
+            <div class="product-card"><a class="product-link"  style="text-decoration: none;" href="product/Acer Nitro V 15.html">
+                <div class="product-image"><img src="images/product_image/Acer Nitro V 15.png"></img></div>
+                <div class="product-name">Acer Nitro V 15 ANV15-51-54AA 15.6" FHD 144Hz Laptop ( i5-13420H, 16GB, 512GB SSD, RTX2050 4GB, W11, HS )</div>
+                <div class="product-price">RM 3199.00</div>
+                <div class="product-sold">Sold 99</div>
+            </div></a>
+            <div class="product-card"><a class="product-link"  style="text-decoration: none;" href="product/Apple MacBook Air(M4 Chip 2025).html">
+                <div class="product-image"><img src="images/product_image/Apple MacBook Air.png"></img></div>
+                <div class="product-name">Apple MacBook Air (M4 chip, 2025)</div>
+                <div class="product-price">RM6349.00</div>
+                <div class="product-sold">Sold 99</div>
+            </div></a>
+            <div class="product-card">
+                <div class="product-image"><img src="images/product_image/HP OmniBook X Laptop 14.png"></img></div>
+                <div class="product-name">HP OmniBook X Laptop 14-fe1013QU SnapDragon X Plus 16GB RAM+512GB SSD 14" diagonal 2.2K touch display OPI Windows11</div>
+                <div class="product-price">RM4399.00</div>
+                <div class="product-sold">Sold 99</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image"><img src="images/product_image/Microsoft Surface Laptop.png"></img></div>
+                <div class="product-name">Microsoft Surface Laptop – Copilot+ PC – Snapdragon® X Elite – 16GB Memory – (Latest Model, 7th Edition)</div>
+                <div class="product-price">RM6499.00</div>
+                <div class="product-sold">Sold 99</div>
+            </div>
+             <div class="product-card">
+                <div class="product-image"><img src="images/product_image/Microsoft Surface Laptop touchscreen.png"></img></div>
+                <div class="product-name">Microsoft Surface Laptop – Copilot+ PC – 13.8” touchscreen – Snapdragon® X Plus – 16GB Memory – (Latest Model, 7th Edition)</div>
+                <div class="product-price">RM6499.00</div>
+                <div class="product-sold">Sold 99</div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/product_image/HP Laptop 15.png"></img></div>
+                <div class="product-name">HP Laptop 15 / AMD Ryzen™ 7-7730U / 12GB RAM+512GB SSD / 15.6 Inch / Office Preloaded / HP-15FC0380AU</div>
+                <div class="product-price">RM2949.00</div>
+                <div class="product-sold">Sold 99</div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/product_image/Apple MacBook Pro.png"></img></div>
+                <div class="product-name">Apple MacBook Pro (14-Inch, M4, M4 Pro, M4 Max, 2024) M4 chip</div>
+                <div class="product-price">RM4299.00</div>
+                <div class="product-sold">Sold  99</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image"><img src="images/product_image/ASUS VivoBook S 16.png"></img></div>
+                <div class="product-name">ASUS Vivobook S 16 OLED S5606M-AMX178WSM</div>
+                <div class="product-price">RM4299.00</div>
+                <div class="product-sold">Sold 99</div>
+            </div>
+             <div class="product-card">
+                <div class="product-image"><img src="images/product_image/13-inch MacBook Air.png"></img></div>
+                <div class="product-name">13-inch MacBook Air with M2 Chip</div>
+                <div class="product-price">RM3999.00</div>
+                <div class="product-sold">Sold 99</div>
+            </div>
+        </div>
+    </div>
+    
+   <div class="section">
+        <div class="section-header">
+            <div class="section-title">YOU MIGHT LIKE</div>
+            <div class="see-all">See All</div>
+        </div>
+        <div class="products-card-box">
+            <div class="product-card-like">
+                <div class="product-image"><img src="images/product_image/Canon PIXMA MG2570S.png"></div>
+                <div class="product-name">Canon PIXMA MG2570S All-In-One Printer</div>
+                <div class="product-price">RM209.00</div>
+            </div>
+            <div class="product-card-like">
+                <div class="product-image"><img src="images/product_image/Apple iMac 2024 with Nano-texture glass.png"></div>
+                <div class="product-name">Apple iMac 2024 (24-inch, 4.5K Retina Display, M4 Chip) Silver - 16GB, 256GB SSD with Nano-texture glass</div>
+                <div class="product-price">RM7549.00</div>
+            </div>
+            <div class="product-card-like">
+                <div class="product-image"><img src="images/product_image/Apple iMac 2024 Four Thunderbolt port.png"></div>
+                <div class="product-name">Apple iMac 2024 (24-inch, 4.5K Retina Display, M4 Chip) Four Thunderbolt port</div>
+                <div class="product-price">RM8399.00</div>
+            </div>
+            <div class="product-card-like"><a class="product-link"  style="text-decoration: none;" href="product/Apple iMac 2024 Two Thunderbolt port.html">
+                <div class="product-image"><img src="images/product_image/Apple iMac 2024.png"></div>
+                <div class="product-name">Apple iMac 2024 (24-inch, 4.5K Retina Display, M4 Chip) 16GB, 256GB SSD Two Thunderbolt port</div>
+                <div class="product-price">RM5799.00</div>
+            </div></a>
+        </div>
+
+        <div class="products-card-box">
+                    <div class="product-card-like">
+                        <div class="product-image"><img src="images/product_image/ACER Predator Helios Neo16 PHN16-72-56S4 16.png"></img></div>
+                        <div class="product-name">ACER Predator Helios Neo16 PHN16-72-56S4 16" Gaming Laptop (i5-14500HX, 16GB DDR5, 1TB SSD, RTX4060 8GB, Win11H, 2YW)</div>
+                        <div class="product-price">RM5699.00</div>
+                    </div>
+                    <div class="product-card-like">
+                        <div class="product-image"><img src="images/product_image/ACER Aspire Lite 16 AL16-52P-59PP 16 Laptop Steel Grey.png"></img></div>
+                        <div class="product-name">ACER Aspire Lite 16 AL16-52P-59PP 16" Laptop Steel Grey (i5-1334U, 16GB DDR5, 512GB SSD, Intel UHD, Win11H, OfficeHNS21+M365 BASIC, 2YW)</div>
+                        <div class="product-price">RM2399.00</div>
+                    </div>
+                    <div class="product-card-like">
+                        <div class="product-image"><img src="images/product_image/ASUS ROG FLOW Z13 (GZ301V-UMU004W).png"></img></div>
+                        <div class="product-name">ASUS ROG FLOW Z13 (GZ301V-UMU004W) i9-13900H/ 16GB 4800Mhz/ 1TB SSD/ RTX4050 6GB/ 13.4" QHD 165Hz/ Win11/ 2Yrs Warranty - Black</div>
+                        <div class="product-price">RM8499.00</div>
+                    </div>
+                    <div class="product-card-like">
+                        <div class="product-image"><img src="images/product_image/ASUS TUF Gaming F15 2023 (FX507Z-U4LP052W).png"></img></div>
+                        <div class="product-name">ASUS TUF Gaming F15 2023 (FX507Z-U4LP052W) I7-12700H/ 8GB 3200Mhz/ 512GB/ RTX4050 6GB/ 15.6" FHD 144Hz/ Win11/ 2Yrs Warranty - Mecha Grey</div>
+                        <div class="product-price">RM4299.00</div>
+                    </div>
+                </div>
+
+                 <div class="products-card-box">
+                    <div class="product-card-like">
+                        <div class="product-image"><img src="images/product_image/ASUS ZENBOOK OLED 14 (UX3405C-APZ346WS 48WS).png"></img></div>
+                        <div class="product-name">ASUS ZENBOOK OLED 14 (UX3405C-APZ346WS/48WS) U9-285H, 32GB LPDDR5X, 1TB SSD, Intel ARC, 14" 3K OLED 120hz, Win11H, OfficeHNS24+365 Basic, 2 Years Warranty</div>
+                        <div class="product-price">RM7399.00</div>
+                    </div>
+                    <div class="product-card-like">
+                        <div class="product-image"><img src="images/product_image/ASUS Zenbook Pro 16X (UX7602Z-MME120WS).png"></img></div>
+                        <div class="product-name">ASUS Zenbook Pro 16X (UX7602Z-MME120WS) i7-12700H/ 16GB RAM/ 1TB SSD/ RTX3060 / 16" 4K OLED/ OfficeHNS/ Win11/ 2Yrs Warranty - Tech Black</div>
+                        <div class="product-price">RM6599.00</div>
+                    </div>
+                    <div class="product-card-like">
+                        <div class="product-image"><img src="images/product_image/AVITA Essential 14 AVT-NE14A2MYC43A 14.png"></img></div>
+                        <div class="product-name">AVITA Essential 14 AVT-NE14A2MYC43A 14" Laptop White/ Black/ Grey (N4020, 4GB, 128GB, Win10 in S Mode)</div>
+                        <div class="product-price">RM1599.00</div>
+                    </div>
+                    <div class="product-card-like">
+                        <div class="product-image"><img src="images/product_image/AVITA Liber V14 AVT-NS14A9MYF561 14.png"></img></div>
+                        <div class="product-name">AVITA Liber V14 AVT-NS14A9MYF561 14" Laptop (i5-1135G7, 8GB, 512GB, Win10)</div>
+                        <div class="product-price">RM2999.00</div>
+                    </div>
+                </div>
+
+                <div class="products-card-box">
+                    <div class="product-card-like">
+                        <div class="product-image"><img src="images/product_image/ASUS ROG Strix X802 Scope NX TKL Mechanical Gaming Keyboard.png"></img></div>
+                        <div class="product-name">ASUS ROG Strix X802 Scope NX TKL Mechanical Gaming Keyboard</div>
+                        <div class="product-price">RM449.00</div>
+                    </div>
+                    <div class="product-card-like">
+                        <div class="product-image"><img src="images/product_image/LOGITECH Pop Wireless Keyboard Mouse Collection Bundle + FREE Pebble Joy Coaster.png"></img></div>
+                        <div class="product-name">LOGITECH Pop Wireless Keyboard Mouse Collection Bundle + FREE Pebble Joy Coaster</div>
+                        <div class="product-price">RM648.00</div>
+                    </div>
+                    <div class="product-card-like">
+                        <div class="product-image"><img src="images/product_image/ACER Predator Cestus 310 Gaming Mouse Black.png"></img></div>
+                        <div class="product-name">ACER Predator Cestus 310 Gaming Mouse Black</div>
+                        <div class="product-price">RM199.00</div>
+                    </div>
+                    <div class="product-card-like">
+                        <div class="product-image"><img src="images/product_image/LENOVO Yoga Mouse with Laser Presenter Shadow Black.png"></img></div>
+                        <div class="product-name">LENOVO Yoga Mouse with Laser Presenter Shadow Black</div>
+                        <div class="product-price">RM209.00</div>
+                    </div>
+                </div>
+    </div>
+    
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p class="copyright">&copy; 2025 TFH Sdn. Bhd.. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

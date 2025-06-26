@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us - TFH</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="header-footer.css">
+  <link rel="stylesheet" href="contact.css" />
+  <script src="header-footer.js"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/header-logo.png" alt="TechHub" class="logo-img">
+            </a>
+            
+            <div class="nav-links">
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="track-order.html" class="nav-link">Track Order</a>
+                <a href="contact-us.html" class="nav-link">Contact Us</a>
+                <a href="about-us.html" class="nav-link">About Us</a>
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Search products...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <div class="icons">
+                <a href="my-account.html" class="icon">
+                    <i class="fas fa-user"></i>
+                </a>
+                <a href="cart.html" class="icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+  <main class="container">
+    <section class="section">
+      <h1>Contact Us</h1>
+      <p>If you have any questions or need assistance, we're here to help!</p>
+    </section>
+
+    <section class="section">
+      <div class="grid">
+        <div class="box">
+          <h3>Email Support</h3>
+          <p>Reach us at <strong>support@tfh.com</strong></p>
+        </div>
+        <div class="box">
+          <h3>Social Media</h3>
+          <div class="social">
+            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><img src="images/facebook.png" alt="Facebook" class="social-icon" /></a>
+            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><img src="images/instagram.png" alt="Instagram" class="social-icon" /></a>
+            <a href="https://www.twitter.com" target="_blank" aria-label="Twitter"><img src="images/twitter.png" alt="Twitter" class="social-icon" /></a>
+            <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn"><img src="images/linkedin.png" alt="LinkedIn" class="social-icon" /></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact-section">
+      <h2>Send Us a Message</h2>
+      <form class="contact-form" id="contactForm">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <input type="text" name="subject" placeholder="Subject" required />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <div id="thankYouMessage" class="thank-you-message">Thank you for your feedback!</div>
+    </section>
+
+    <section class="section">
+      <h2>Our Location</h2>
+      <p>Visit us at our headquarters in MMU Melaka</p>
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15931.38890294358!2d102.27228177057464!3d2.2722349040867365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d1eeac9479f421%3A0x2d6b4486e2e53560!2sMultimedia%20University!5e0!3m2!1sen!2smy!4v1683699728821!5m2!1sen!2smy"
+          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+    </section>
+  </main>
+
+  <button id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">&#8679;</button>
+
+    <footer>
+        <div class="footer-content">
+            <p class="copyright">&copy; 2025 TFH Sdn. Bhd.. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+  <script>
+    // Intersection Observer for section animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    });
+
+    document.querySelectorAll('.section').forEach(section => observer.observe(section));
+
+    // Back to top button visibility
+    const topBtn = document.getElementById('backToTop');
+    window.onscroll = () => {
+      topBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    };
+
+    // Form submission handler
+    const form = document.getElementById("contactForm");
+    const thankYouMessage = document.getElementById("thankYouMessage");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); 
+      form.style.display = "none";
+      thankYouMessage.style.display = "block";
+    });
+  </script>
+</body>
+</html>

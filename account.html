@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TFH - My Account</title>
+  <link rel="stylesheet" href="account.css" />
+  <script defer src="account.js"></script>
+  <style>
+    @font-face {
+      font-family: 'RacingEnergy';
+      src: url('fonts/RacingEnergy.otf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="account-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <img src="images/TFH SHOP.png" alt="User Profile" class="profile-pic" />
+      <nav>
+        <ul>
+          <li data-section="profile">Profile</li>
+          <li data-section="address">Address</li>
+          <li data-section="myPurchases">My Purchases</li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+
+      <!-- Profile Section -->
+      <section id="profile" class="content-section">
+        <h1 style="font-family: 'RacingEnergy', sans-serif;">My Account</h1>
+        <p>Select a section from the sidebar to view or edit details.</p>
+      </section>
+
+      <!-- Address Section -->
+      <section id="address" class="content-section" style="display: none;">
+        <h2>Address Book</h2>
+        <button class="add-address">+ Add Address</button>
+        <div class="address-list">
+          <!-- Default Address -->
+          <div class="address-card default">
+            <p><strong>John Doe</strong></p>
+            <p>123 Main Street, Cyberjaya, Selangor</p>
+            <p>+60 12-345 6789</p>
+            <span class="default-label">Default Address</span>
+            <div class="address-actions">
+              <button class="set-default" disabled>Set as Default</button>
+              <button class="edit-address">Edit</button>
+              <button class="delete-address">Delete</button>
+            </div>
+          </div>
+
+          <!-- Another Address -->
+          <div class="address-card">
+            <p><strong>Jane Smith</strong></p>
+            <p>456 Jalan Melaka Raya, Melaka</p>
+            <p>+60 11-222 3344</p>
+            <div class="address-actions">
+              <button class="set-default">Set as Default</button>
+              <button class="edit-address">Edit</button>
+              <button class="delete-address">Delete</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- My Purchases Section -->
+      <section id="myPurchases" class="content-section" style="display: none;">
+        <h2>My Purchases</h2>
+        <p>You haven't made any purchases yet.</p>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>

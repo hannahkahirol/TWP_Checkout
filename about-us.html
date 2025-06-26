@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - TFH</title>
+  <link rel="stylesheet" href="AboutUsPage.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="header-footer.css">
+  <script src="header-footer.js"></script>
+  <style>
+.team {
+  width: 100%;
+  max-width: 1450px;
+  margin: 0 auto 80px;
+  padding: 0 20px;
+  text-align: center;
+  position: relative;
+}
+
+.team h2 {
+  font-size: 2.8rem;
+  color: var(--primary);
+  margin-bottom: 50px;
+  position: relative;
+  display: inline-block;
+}
+
+.team h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 25%;
+  width: 50%;
+  height: 3px;
+  background-color: var(--secondary);
+  border-radius: 2px;
+}
+
+.team .members {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.member {
+  background-color: var(--light);
+  border-radius: 20px;
+  padding: 40px 25px 30px;
+  width: 450px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  border: 1px solid rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.member:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.member-img {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid white;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  position: relative;
+  z-index: 1;
+  background: white;
+}
+
+.member img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.5s ease;
+}
+
+.member:hover img {
+  transform: scale(1.1);
+}
+
+.member h3 {
+  margin: 15px 0;
+  color: var(--primary);
+  font-size: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.member p {
+  margin: 12px 0;
+  color: var(--gray);
+  font-size: 1.05rem;
+  position: relative;
+  z-index: 1;
+}
+
+.member i {
+  color: var(--secondary);
+  margin-right: 8px;
+}
+
+.member a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.member a:hover {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+
+
+footer {
+  width: 100vw;
+  background-color: var(--secondary);
+  padding: 20px 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.connect-section {
+  width: 100vw;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+  </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/header-logo.png" alt="TechHub" class="logo-img">
+            </a>
+            
+            <div class="nav-links">
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="track-order.html" class="nav-link">Track Order</a>
+                <a href="contact-us.html" class="nav-link">Contact Us</a>
+                <a href="about-us.html" class="nav-link">About Us</a>
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Search products...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <div class="icons">
+                <a href="my-account.html" class="icon">
+                    <i class="fas fa-user"></i>
+                </a>
+                <a href="cart.html" class="icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+   <section class="about-container">
+    <div class="intro">
+      <h1>Welcome to <span><img src="images/TFH SHOP.png" alt="TFH Logo" id="logo" /></span></h1>
+      <p>Your trusted hub for IT essentials—from laptops to routers, switches, and more.</p>
+    </div>
+
+    <div class="content-grid">
+      <div class="card">
+        <div class="card-icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="Mission Icon" />
+        </div>
+        <h2>Our Mission</h2>
+        <p>To empower individuals and businesses by delivering reliable, high-quality IT equipment at competitive prices.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Product Icon" />
+        </div>
+        <h2>What We Offer</h2>
+        <p>We stock a wide range of top-tier laptops, networking devices, routers, and switches to meet all your tech needs.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Why Us Icon" />
+        </div>
+        <h2>Why Choose TFH?</h2>
+        <p>We combine expertise, fast delivery, and unbeatable support, making us your go-to IT supplier.</p>
+      </div>
+    </div>
+    </section>
+
+    <section class="timeline-section">
+      <h2>Our Journey</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>2022</h3>
+            <p>TFH was founded by three IT students with a shared passion.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>2023</h3>
+            <p>Official store launch focusing on laptops and networking gear.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>2024</h3>
+            <p>Expanded inventory with routers, accessories, and service add-ons.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>2025</h3>
+            <p>Offices opened in both MMU Melaka and MMU Cyberjaya.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="offices">
+        <h2>Our Offices</h2>
+        <div class="locations">
+          <a class="location" href="https://maps.app.goo.gl/Jpvu3D6anV4QKjoN6" target="_blank">
+            <div class="location-card">
+              <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Melaka Office" />
+              <h3>MMU Melaka Campus</h3>
+              <p>Jalan Ayer Keroh Lama,<br>75450 Bukit Beruang, Melaka</p>
+            </div>
+          </a>
+          <a class="location" href="https://maps.app.goo.gl/uk4UZq8V7gDAyBG97" target="_blank">
+            <div class="location-card">
+              <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Cyberjaya Office" />
+              <h3>MMU Cyberjaya Campus</h3>
+              <p>Persiaran Multimedia,<br>63100 Cyberjaya, Selangor</p>
+            </div>
+          </a>
+        </div>
+    </section>
+
+    <div class="explore-btn">
+      <a href="explore.html">Explore TFH</a>
+    </div>
+
+    <section class="team">
+      <h2>Meet Our Team</h2>
+      <div class="members">
+        <div class="member">
+          <div class="member-img">
+            <img src="images/TEO.jpg" alt="Teo Yu Xuan" />
+          </div>
+          <h3>Teo Yu Xuan</h3>
+          <p><i class="fas fa-phone"></i> +60 16-664 2556</p>
+          <p><i class="fas fa-envelope"></i> <a href="mailto:Teo.Yu.Xuan@mmu.edu.my">Teo.Yu.Xuan@mmu.edu.my</a></p>
+        </div>
+        <div class="member">
+          <div class="member-img">
+            <img src="images/FOOK.jpg" alt="Fook Juan Tyng" />
+          </div>
+          <h3>Fook Juan Tyng</h3>
+          <p><i class="fas fa-phone"></i> +60 11-2612 8176</p>
+          <p><i class="fas fa-envelope"></i> <a href="mailto:Fook.Juan.Tyng@mmu.edu.my">Fook.Juan.Tyng@mmu.edu.my</a></p>
+        </div>
+        <div class="member">
+          <div class="member-img">
+            <img src="images/HANNAH.jpg" alt="Hannah Farzana" />
+          </div>
+          <h3>Hannah Farzana Kahirol</h3>
+          <p><i class="fas fa-phone"></i> +60 19-576 1525</p>
+          <p><i class="fas fa-envelope"></i> <a href="mailto:Hannah.Farzana@mmu.edu.my">Hannah.Farzana@mmu.edu.my</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="connect-section">
+      <h2>Connect With Us</h2>
+      <div class="social">
+        <a href="https://www.facebook.com" target="_blank" class="social-link">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com" target="_blank" class="social-link">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.twitter.com" target="_blank" class="social-link">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.linkedin.com" target="_blank" class="social-link">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+    </section>
+    <!--
+    <button onclick="scrollToTop()" id="scrollTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+    -->
+  
+    <footer>
+        <div class="footer-content">
+            <p class="copyright">&copy; 2025 TFH Sdn. Bhd.. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+  <script>
+    function initTranslate() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,ms,zh-CN,id,ta',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+
+    const btn = document.getElementById("scrollTopBtn");
+    window.onscroll = () => {
+      btn.style.display = window.scrollY > 300 ? "block" : "none";
+    };
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

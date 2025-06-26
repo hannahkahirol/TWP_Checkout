@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Orders - TFH</title>
+
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js"></script>
+        <script>
+            
+        </script>
+    </head>
+    <body>
+        <header>
+            <!--Header Bar-->
+            <div class="head-bar">
+                <a href="dashboard.html">
+                    <img src="../images/logo.png" title="Logo" alt="Logo" width="30px" height="30px">
+                </a>
+
+                <div class="head-content-box">
+                    <span><a href="dashboard.html">&nbsp;&nbsp;Home</a>&nbsp;&nbsp;>&nbsp;&nbsp;</span><a href="add-new-order.html"><b>Add New Order</b></a>
+                </div>
+
+                <!--Header Bar > Action-->
+                <div class="head-action">
+                    <!--Notification Action-->
+                    <div class="head-notify-action">
+                        <button onclick="toggleNotification()">
+                            <img src="../images/notification.png" title="Notification" alt="Notification Icon" width="16.5px" height="16.5px">
+                        </button>
+
+                        <!--Header Bar > Action > Notification Bar-->
+                        <div class="head-notify-bar">
+                            <!--Header Bar > Action > Notification Bar > Header-->
+                            <div class="head-notify-bar-head">
+                                <h3>Notification</h3>
+                                <div class="head-notify-bar-head-action">
+                                    <button class="head-notify-bar-head-button" onclick="refreshNotifications()">
+                                        <img src="../images/refresh.png" title="Refresh" alt="Refresh Icon" width="16px" height="16px">
+                                    </button>
+                                    <div class="head-notify-bar-head-splitter"></div>
+                                    <button class="head-notify-bar-head-button" onclick="toggleNotification()">
+                                        <img src="../images/close.png" title="Close" alt="Close Icon" width="16px" height="16px">
+                                    </button>
+                                </div>
+                            </div>
+                            <!--Header Bar > Action > Notification Bar > Item 1-->
+                            <div class="head-notify-bar-item">
+                                    <span class="head-notify-bar-item-title">New Login Alert</span>
+                                    <span class="head-notify-bar-item-time">06/05/2025 11:22</span>
+                                    <p>A new login has been detected on your account at Petaling Jaya on desktop at 06-05-2025 11:22. If this was not done by you, please contact IT department immediately.</p>
+                            </div>
+                            <!--Header Bar > Action > Notification Bar > Item 2-->
+                            <div class="head-notify-bar-item">
+                                    <span class="head-notify-bar-item-title">New Login Alert</span>
+                                    <span class="head-notify-bar-item-time">05/05/2025 20:22</span>
+                                    <p>A new login has been detected on your account at Petaling Jaya on desktop at 05-05-2025 20:22. If this was not done by you, please contact IT department immediately.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Header Bar > Action > Notification Bar > Splitter-->
+                    <div class="head-action-split"></div>
+
+                    <!--Header Bar > Action > Notification Bar > Account Information-->
+                    <div class="head-action-acc-info">
+                        <img class="head-acc-avatar" src="../images/avatar.png" title="Avatar" alt="Avatar" height="32px" width="32px">
+                        <span class="head-acc-name">TEO YU XUAN</span>
+                        <button class="head-acc-action" onclick="toggleHeadAccDrop()">
+                            <img src="../images/arrow-down.png" title="Dropdown" alt="Dropdown Arrow" width="16px" height="16px">
+                        </button>
+
+                        <!--Header Bar > Action > Notification Bar > Account Information > Dropdown-->
+                        <div class="head-acc-drop" id="headAccDrop">
+                            <div>
+                                <ul>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/store-information.png" title="Store Information" alt="Store Information">
+                                        <span>Store Information</span>
+                                    </li>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/store-setting.png" title="Store Setting" alt="Store Setting">
+                                        <span>Store Setting</span>
+                                    </li>
+                                    <li>
+                                        <img class="head-acc-drop-icon" src="../images/logout.png" title="Logout" alt="Logout">
+                                        <span>Logout</span>
+                                    </li>
+                                </ul>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <nav>
+            <!--Side Menu-->
+            <div class="side-menu">
+                <!--Side Menu > Item 1-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title">
+                        <a href="dashboard.html">Dashboard</a>
+                    </div>
+                </div>
+                <!--Side Menu > Item 2-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('side-menu-order')">
+                        <span>Order</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="side-menu-order" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="my-orders.html">My Orders</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="add-new-order.html">Add New Order</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 3-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('product-menu')">
+                        <span>Product</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="product-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="my-products.html">My Products</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="add-new-product.html">Add New Product</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 4-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('marketing-menu')">
+                        <span>Marketing</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="marketing-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="discount.html">Discount</a>
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="vouchers.html">Vouchers</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 5-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('finance-menu')">
+                        <span>Finance</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="finance-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="payment.html">Payment</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Side Menu > Item 6-->
+                <div class="side-menu-item">
+                    <div class="side-menu-title" onclick="toggleSideMenu('store-menu')">
+                        <span>Store</span>
+                        <img class="side-menu-drop" src="../images/arrow-right.png" alt="arrow" width="16px">
+                    </div>
+                    <div id="store-menu" class="side-menu-content">
+                        <ul>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="store-information.html">Store Information</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="side-sub-menu">
+                                    <a href="store-setting.html">Store Setting</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <!--Orders-->
+            <div class="dashboard-container">
+                <!--Orders > Content-->
+                <div class="dashboard">
+                    <h2 style="display: inline-block;">Edit Order</h2>
+                    <button class="add-new-order-button">
+                        <a href="add-new-order.html">Add New Order</a>
+                    </button>
+                    <div class="todo-container" style="margin-top: 0;">
+                        <form name="add-new-order">
+                        <!--Dashboard > Content > To-Do List > Heading-->
+                        <div class="todo-head">
+                            <div>
+                                <div>
+                                    <h3>Order #7491 Details</h3>
+                                </div>
+                                <div>
+                                    <input type="submit" class="add-new-order-submit-btn" value="Update">
+                                    <input type="reset" class="add-new-order-reset-btn">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="todo">
+                            <!--Dashboard > Content > To-Do List > Item 1-->
+                            <div class="new-order-item">
+                                <h3>General</h3>
+                                    <p>Date Created</p>
+                                    <p>
+                                        <input type="datetime-local" name="date" required>
+                                    </p>
+                                    <p>Status</p>
+                                    <p>
+                                        <select name="status" required>
+                                            <option value="pendingPayment" selected>Pending Payment</option>
+                                            <option value="processing">Processing</option>
+                                            <option value="onHold">On Hold</option>
+                                            <option value="completed">Completed</option>
+                                            <option value="cancelled">Cancelled</option>
+                                            <option value="refunded">Refunded</option>
+                                            <option value="failed">Failed</option>
+                                            <option value="draft">Draft</option>
+                                        </select>
+                                    </p>
+                                    <p>Customer</p>
+                                    <p>
+                                        <input list="emails" id="email" name="email" placeholder="Guest">
+                                        
+                                        <datalist id="emails">
+                                            <option value="fook.juan.tyng@outlook.com">
+                                            <option value="chong.zi.xuan@outlook.com">
+                                            <option value="toh.yuan.kai@outlook.com">
+                                            <option value="hannah.farzana.binti.kahirol@outlook.com">
+                                            <option value="sim.zhi.yang@outlook.com">
+                                        </datalist>
+                                    </p>
+                            </div>
+                            <!--Dashboard > Content > To-Do List > Item 2-->
+                            <div class="new-order-item">
+                                <h3>Billing</h3>
+                                <small>
+                                    <a href="#">Load Billing Address</a>
+                                </small>
+                                    <table>
+                                        <tr>
+                                            <td>First Name</td>
+                                            <td>Last Name</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" maxlength="50" name="firstName">
+                                            </td>
+                                            <td>
+                                                <input type="text" maxlength="50" name="lastName">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Company</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <input type="text" maxlength="100" name="company">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Address Line 1</td>
+                                            <td>Address Line 2</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" maxlength="100" name="addressLine1">
+                                            </td>
+                                            <td>
+                                                <input type="text" maxlength="100" name="addressLine2">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>City</td>
+                                            <td>Postcode / ZIP</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" maxlength="100" name="city">
+                                            </td>
+                                            <td>
+                                                <input type="number" maxlength="5" name="postcode">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email Address</td>
+                                            <td>Phone</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="email" maxlength="150" name="email">
+                                            </td>
+                                            <td>
+                                                <input type="text" maxlength="13" name="phone" value="+60">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Payment Method</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <select name="payMethod">
+                                                    <option>N/A</option>
+                                                    <option value="onlineBank">Online Banking</option>
+                                                    <option value="card">Credit / Debit Card</option>
+                                                    <option value="cashStore">Cash Payment at Physical Stores</option>
+                                                    <option value="cardInstall">Credit Card Installment</option>
+                                                    <option value="applePay">Apple Pay</option>
+                                                    <option value="cashDelivery">Cash on Delivery</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Transaction ID</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <input type="text" maxlength="50">
+                                            </td>
+                                        </tr>
+                                    </table>
+                            </div>
+                            <!--Dashboard > Content > To-Do List > Item 3-->
+                            <div class="new-order-item">
+                                <h3>Shipping</h3>
+                                <small>
+                                    <a href="#">Load Shipping Address</a>&nbsp;
+                                    <a href="#">Copy Billing Address</a>
+                                </small>
+                                    <table>
+                                        <tr>
+                                            <td>First Name</td>
+                                            <td>Last Name</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" maxlength="50" name="firstName">
+                                            </td>
+                                            <td>
+                                                <input type="text" maxlength="50" name="lastName">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Company:</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <input type="text" maxlength="100" name="company">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Address Line 1</td>
+                                            <td>Address Line 2</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" maxlength="100" name="addressLine1">
+                                            </td>
+                                            <td>
+                                                <input type="text" maxlength="100" name="addressLine2">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>City</td>
+                                            <td>Postcode / ZIP</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" maxlength="100" name="city">
+                                            </td>
+                                            <td>
+                                                <input type="number" maxlength="5" name="postcode">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Phone</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <input type="text" maxlength="13" name="phone" value="+60">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Customer Provided Note</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <textarea style="width: 100%;" rows="7">
+                                                    
+                                                </textarea>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="todo-container">
+                        <table class="new-order-product">
+                            <tr>
+                                <th style="width: 55%;">Item</td>
+                                <th style="width: 15%; text-align: right;">Quantity(s)</td>
+                                <th style="width: 15%; text-align: right;">Cost</td>
+                                <th style="width: 15%; text-align: right;">Total</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                        <input list="products" id="product" name="new-order-product" placeholder="Search for a product...">
+                                        
+                                        <datalist id="products">
+                                            <option value='HP OmniBook X Laptop 14-fe1013QU SnapDragon X Plus 16GB RAM+512GB SSD 14" diagonal 2.2K touch display OPI Windows11'>
+                                            <option value="HP Laptop 15 / AMD Ryzen™ 7-7730U / 12GB RAM+512GB SSD / 15.6 Inch / Office Preloaded / HP-15FC0380AU">
+                                            <option value='Acer Nitro V 15 ANV15-51-54AA 15.6" FHD 144Hz Laptop ( i5-13420H, 16GB, 512GB SSD, RTX2050 4GB, W11, HS )'>
+                                            <option value="Microsoft Surface Laptop – Copilot+ PC – Snapdragon® X Elite – 16GB Memory – (Latest Model, 7th Edition)">
+                                            <option value="Microsoft Surface Laptop – Copilot+ PC – 13.8” touchscreen – Snapdragon® X Plus – 16GB Memory – (Latest Model, 7th Edition)">
+                                            <option value="Canon PIXMA MG2570S All-In-One Printer">
+                                            <option value="Apple MacBook Air (M4 chip, 2025)">
+                                        </datalist>
+                                </td>
+                                <td>
+                                    <input type="number" name="new-order-product-qty" value="1">
+                                </td>
+                                <td style="text-align: right;">
+                                    RM <span class="new-order-product-cost"></span>
+                                </td>
+                                <td style="text-align: right;">
+                                    RM <span class="new-order-product-total"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="text-align: right;">
+                                    Item Subtotal:
+                                </td>
+                                <td style="text-align: right;">
+                                    <b>
+                                        RM <span class="new-order-sub-tot">0.00</span>
+                                    </b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="text-align: right;">
+                                    Order Total:
+                                </td>
+                                <td style="text-align: right;">
+                                    <b>
+                                        RM <span class="new-order-sub-tot">0.00</span>
+                                    </b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <button class="add-new-order-reset-btn" style="margin-left: 0;">
+                                        <a href="#">Add Item(s)</a>
+                                    </button>
+                                    <button class="add-new-order-reset-btn">
+                                        <a href="#">Apply Coupon</a>
+                                    </button>
+                                </td>
+                                <td colspan="2" style="text-align: right;">
+                                    <button class="add-new-order-submit-btn" style="margin-right: 0;">
+                                        <a href="#">Recalculate</a>
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                        </form>
+                    </div>
+
+                    <div class="announce" style="margin-top: 20px;">
+                        <h3>Order notes</h3>
+                        <div class="announce-item">
+                            <div class="announce-content">
+                                <p>There are no notes yet.</p>
+                            </div>
+                        </div>
+                        <!--Dashboard > Content > Annoucement > Item 1-->
+                        <div class="announce-item">
+                            <div class="announce-head">
+                                <span>Add Note</span>
+                            </div>
+                            <div class="announce-content">
+                                <form>
+                                <p>
+                                    <textarea rows="5">
+
+                                    </textarea>
+                                </p>
+                                <select name="order-note-access">
+                                    <option value="privateNote">Private note</option>
+                                    <option value="noteToCustomer">Note to customer</option>
+                                </select>
+                                <input type="submit" class="announce-button" value="Add" style="border: none;">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!--Footer-->
+        <footer>
+            <p>&copy; 2025 TFH Sdn. Bhd.. All Rights Reserved.</p>
+        </footer>
+
+        <!--Chat-->
+        <a href="#" class="chat-button" target="_blank" title="Chat">
+            <img src="../images/chat.png" title="Chat" alt="Chat Icon" height="40px" width="40px">
+        </a>
+    </body>
+</html>

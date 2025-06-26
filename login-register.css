@@ -1,0 +1,333 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f7fb;
+    transition: background-color 0.3s ease;
+}
+
+.sign-up a,
+.login-link a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border: 1px solid #ffc764;
+    padding: 5px 10px;
+    background-color: #ffc764;
+    border-radius: 50px;
+}
+
+.login-container, .register-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-container {
+    margin-right: 100px;
+    transform: translateX(30px);
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+.register-container {
+    margin-left: 100px;
+    transform: translateX(-30px);
+    animation: slideInR 0.5s ease-out forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInR {
+    from {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.login-container h2, 
+.register-container h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 30px;
+}
+
+.tabs div {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.tabs .active {
+    border-bottom: 2px solid #FF884B;
+    color: #FF884B;
+}
+
+.tabs div:hover {
+    color: #FF884B;
+}
+
+.login-form, #details-step {
+    display: none;
+}
+
+.login-form.active {
+    display: block;
+}
+
+.login-container input,
+.login-container button,
+.register-container input,
+.register-container button,
+.register-container select {
+    width: 100%;
+    padding: 12px 0;
+    margin: 12px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.login-container input,
+.register-container input {
+    margin: 10px 0 20px 0;
+}
+
+.login-container input:focus,
+.register-container input:focus {
+    border-color: #6c8e7e;
+    outline: none;
+    transform: scale(1.05);
+}
+
+.login-container button,
+.register-container button {
+    background-color: #FF884B;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-container button:hover,
+.register-container button:hover {
+    background-color: #FFC764;
+    transform: translateY(-3px);
+    color: black;
+}
+
+.hidden {
+    display: none;
+}
+
+.error {
+    color: #ff577f;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.switch-role {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.switch-role a {
+    color: #FF884B;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.switch-role a:hover {
+    color: #FFC764;
+}
+
+.sign-up {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.footer {
+    background-color: #f4f7fb;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+.footer p {
+    font-size: 14px;
+    color: #666;
+}
+
+.security-image {
+    width: 50%;
+    height: auto;
+    margin: 0 auto 10px;
+    display: block;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#name-section p {
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.button-group button {
+    width: 50%;
+}
+
+.captcha-otp-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.captcha-label-input {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.captcha-label-input label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.captcha-label-input input {
+    width: 90%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin: 0;
+}
+
+.request-otp-button button {
+    width: fit-content;
+    min-width: 120px;
+    padding: 12px;
+    background-color: #FF884B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin: 0;
+}
+
+.request-otp-button button:hover {
+    background-color: #FFC764;
+    transform: translateY(-3px);
+    color: black;
+}
+
+.required {
+    color: #ff577f;
+}
+
+.name-fields {
+    display: flex;
+    gap: 15px;
+}
+
+.name-fields > div {
+    flex: 1;
+}
+
+.name-fields label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.name-fields input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.floating-button {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) rotate(90deg);
+    background-color: #FF884B;
+    color: white;
+    padding: 15px 40px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    margin-left: 60px !important;
+}
+
+.floating-button:hover, .floating-button2:hover {
+    background-color: #FFC764;
+    color: black;
+}
+
+.floating-button2 {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) rotate(90deg);
+    background-color: #FF884B;
+    color: white;
+    padding: 15px 40px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    margin-right: 60px !important;
+}
