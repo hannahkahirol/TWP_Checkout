@@ -140,6 +140,12 @@
     </div>
   </div>
 
+  <form id="checkoutForm" action="process-order.php" method="POST">
+  <!-- Your existing fields go here -->
+  <input type="hidden" name="cartData" id="cartData" />
+  <button type="submit" class="pay-now">Pay Now</button>
+  </form>
+
   <script src="checkout.js"></script>
   <script src="payment.js"></script>
 </body>
