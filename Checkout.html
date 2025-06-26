@@ -18,64 +18,64 @@
       </div>
     </div>
 
-    <div class="checkout-wrapper">
-      <div class="left-form">
-        <section class="express-checkout">
-          <h3 class="express-title">Express Checkout</h3>
-          <div class="button-row">
-            <button class="apple-pay">
-              <img src="images/apple-pay.png" alt="Apple Pay">
-            </button>
-            <button class="paypal">
-              <img src="images/paypal.png" alt="PayPal">
-            </button>
-          </div>
-          <div class="or-separator">OR</div>
-        </section>
+    <!-- ✅ Begin Checkout Form -->
+    <form id="checkoutForm" action="process-order.php" method="POST">
+      <input type="hidden" name="cartData" id="cartData" />
 
-        <section class="contact-section">
-          <div class="section-header">
-            <h2>Customer Information</h2>
-            <a href="login.html" class="login-link">Log in</a>
-          </div>
-          <input type="email" placeholder="Email">
-        </section>
+      <div class="checkout-wrapper">
+        <div class="left-form">
+          <!-- Express Payment -->
+          <section class="express-checkout">
+            <h3 class="express-title">Express Checkout</h3>
+            <div class="button-row">
+              <button type="button" class="apple-pay">
+                <img src="images/apple-pay.png" alt="Apple Pay">
+              </button>
+              <button type="button" class="paypal">
+                <img src="images/paypal.png" alt="PayPal">
+              </button>
+            </div>
+            <div class="or-separator">OR</div>
+          </section>
 
-        <section class="delivery-section">
-          <h3>Delivery</h3>
-          <select id="country">
-            <option value="">Select Country</option>
-          </select>
+          <!-- Customer Info -->
+          <section class="contact-section">
+            <div class="section-header">
+              <h2>Customer Information</h2>
+              <a href="login.html" class="login-link">Log in</a>
+            </div>
+            <input type="email" name="email" placeholder="Email" required>
+          </section>
 
-          <div class="name-fields">
-            <input type="text" placeholder="First name">
-            <input type="text" placeholder="Last name">
-          </div>
-
-          <input type="text" placeholder="Company (optional)">
-          <input type="text" placeholder="Address">
-          <input type="text" placeholder="Apartment, suite, etc. (optional)">
-
-          <div class="location-fields">
-            <input type="text" placeholder="Postcode">
-            <input type="text" placeholder="City">
-            <select id="state">
+          <!-- Shipping Address -->
+          <section class="delivery-section">
+            <h3>Delivery</h3>
+            <div class="name-fields">
+              <input type="text" name="first_name" placeholder="First name" required>
+              <input type="text" name="last_name" placeholder="Last name" required>
+            </div>
+            <input type="text" name="address_line1" placeholder="Address" required>
+            <input type="text" name="address_line2" placeholder="Apartment, suite, etc. (optional)">
+            <input type="text" name="postcode" placeholder="Postcode" required>
+            <input type="text" name="city" placeholder="City" required>
+            <select name="state" required>
               <option value="">Select State/Territory</option>
+              <option value="Sabah">Sabah</option>
+              <option value="Sarawak">Sarawak</option>
+              <option value="Selangor">Selangor</option>
+              <!-- Add more -->
             </select>
-          </div>
+            <input type="tel" name="phone" placeholder="Phone">
+          </section>
 
-          <script src="country.js"></script>
-          <input type="tel" placeholder="Phone">
-        </section>
+          <!-- Payment Method -->
+          <section class="payment-section">
+            <h3>Payment</h3>
+            <p>All transactions are secure and encrypted.</p>
 
-        <section class="payment-section">
-          <h3>Payment</h3>
-          <p>All transactions are secure and encrypted.</p>
-
-          <div class="payment-method">
             <label class="payment-option">
               <div class="payment-left">
-                <input type="radio" name="payment" value="credit" checked>
+                <input type="radio" name="payment_method" value="credit" checked>
                 <span>Credit Card</span>
               </div>
               <div class="payment-right card-icons">
@@ -85,17 +85,17 @@
             </label>
 
             <div class="credit-card-details">
-              <input type="text" placeholder="Card number">
+              <input type="text" name="card_number" placeholder="Card number">
               <div class="cc-row">
-                <input type="month" placeholder="Expiration">
-                <input type="text" placeholder="Security code">
+                <input type="month" name="card_expiry" placeholder="Expiration">
+                <input type="text" name="card_cvc" placeholder="Security code">
               </div>
-              <input type="text" placeholder="Name on card">
+              <input type="text" name="card_name" placeholder="Name on card">
             </div>
 
             <label class="payment-option">
               <div class="payment-left">
-                <input type="radio" name="payment" value="paypal">
+                <input type="radio" name="payment_method" value="paypal">
                 <span>PayPal</span>
               </div>
               <div class="payment-right">
@@ -105,48 +105,52 @@
 
             <label class="payment-option">
               <div class="payment-left">
-                <input type="radio" name="payment" value="apple">
+                <input type="radio" name="payment_method" value="apple">
                 <span>Apple Pay</span>
               </div>
               <div class="payment-right">
                 <img src="images/apple-pay.png" alt="Apple Pay">
               </div>
             </label>
-          </div>
-        </section>
+          </section>
 
-        <button class="pay-now">Pay Now</button>
-      </div>
-
-      <div class="right-summary">
-        <div class="cart-items"></div>
-
-        <div class="discount-section">
-          <label for="discount-code">Discount code or gift card</label>
-          <div class="discount-row">
-            <input type="text" id="discount-code" placeholder="Enter code here" />
-            <button id="apply-discount" disabled>Apply</button>
-          </div>
-          <div class="discount-error">Enter a valid discount code or gift card</div>
-          <div id="loading-icon" class="hidden">Applying...</div>
+          <button type="submit" class="pay-now">Pay Now</button>
         </div>
 
-        <div class="summary-totals">
-          <p><span>Subtotal:</span> <span>RM 0.00</span></p>
-          <p><span>Shipping:</span> <span>Calculated at next step</span></p>
-          <p class="total-line"><span>Total:</span> <span class="total-amount">RM 0.00</span></p>
+        <!-- Right Cart Summary -->
+        <div class="right-summary">
+          <div class="cart-items"></div>
+
+          <div class="discount-section">
+            <label for="discount-code">Discount code or gift card</label>
+            <div class="discount-row">
+              <input type="text" id="discount-code" placeholder="Enter code here" />
+              <button id="apply-discount" disabled>Apply</button>
+            </div>
+            <div class="discount-error">Enter a valid discount code or gift card</div>
+            <div id="loading-icon" class="hidden">Applying...</div>
+          </div>
+
+          <div class="summary-totals">
+            <p><span>Subtotal:</span> <span>RM 0.00</span></p>
+            <p><span>Shipping:</span> <span>Calculated at next step</span></p>
+            <p class="total-line"><span>Total:</span> <span class="total-amount">RM 0.00</span></p>
+          </div>
         </div>
       </div>
-    </div>
+    </form>
+    <!-- ✅ End Form -->
   </div>
-
-  <form id="checkoutForm" action="process-order.php" method="POST">
-  <!-- Your existing fields go here -->
-  <input type="hidden" name="cartData" id="cartData" />
-  <button type="submit" class="pay-now">Pay Now</button>
-  </form>
 
   <script src="checkout.js"></script>
   <script src="payment.js"></script>
+
+  <script>
+    // ✅ Attach cart to form on submit
+    document.getElementById("checkoutForm").addEventListener("submit", function () {
+      const cart = JSON.parse(localStorage.getItem("tfhCart")) || [];
+      document.getElementById("cartData").value = JSON.stringify(cart);
+    });
+  </script>
 </body>
 </html>
